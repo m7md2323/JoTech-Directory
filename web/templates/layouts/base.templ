@@ -1,0 +1,17 @@
+package layouts
+
+templ Base(title string) {
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>{ title }</title>
+            <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+        </head>
+        <body>
+            <nav> <!-- Your Navbar here --> </nav>
+            <main>
+                { children... } // This is where the Page content will "land"
+            </main>
+        </body>
+    </html>
+}

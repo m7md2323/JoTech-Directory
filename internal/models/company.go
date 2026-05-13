@@ -1,30 +1,31 @@
-package main
-
+package models
 
 type Company struct {
-	Name string
-	Location string
-	Size string
-	cardPhoto string //card logo path file
+	ID uint `gorm:"primaryKey"`
+	Name string 
+	Location string 
+	LocationURL string
+	Size string 
+	Logo string //card logo path file
 }
 
-var companies = []Company{
+var Companies = []Company{
 	{
 		Name : "Amazon",
 		Location: "Amman",
 		Size: "International",
-		cardPhoto: "",
+		Logo: "",
 	},
 	{
 		Name : "Google",
 		Location: "Amman",
 		Size: "International",
-		cardPhoto: "",
+		Logo: "",
 	},
 	{
 		Name : "Madar",
 		Location: "Irbid",
 		Size: "Mid-Size",
-		cardPhoto: "",
+		Logo: "",
 	},
 }

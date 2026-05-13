@@ -1,0 +1,10 @@
+package partials
+
+import "Jordan-Tech-Companies/internal/models"
+
+templ CompanyCard(c models.Company) {
+    <div class="card">
+        <h3>{ c.Name }</h3>
+        <p>{ c.Location }</p>
+    </div>
+}

@@ -1,24 +1,23 @@
 package main
 
 import (
-	"net/http"
 	"log"
-	"../../internal/handlers"
+	"net/http"
 
+	//"github.com/m7md2323/Jordan-Tech-Companies/internal/handlers"
+	"Jordan-Tech-Companies/internal/handlers"
 )
 
-func main(){
+func main() {
 
-	mux:=http.NewServeMux()
+	mux := http.NewServeMux()
 
 	//Routes
 
-	mux.HandleFunc("/",handlers.Home)
-	mux.HandleFunc("/companyProfile",handlers.CompanyProfile)
-	mux.HandleFunc("/companies",handlers.Companies)
+	mux.HandleFunc("GET /", handlers.Home)
+	mux.HandleFunc("GET /companyProfile", handlers.CompanyProfile)
+	mux.HandleFunc("GET /companies", handlers.Companies)
 
-	log.Fatal(http.ListenAndServe(":8080",nil))
-
-	
+	log.Fatal(http.ListenAndServe(":8080", mux))
 
 }
