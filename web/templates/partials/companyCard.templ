@@ -3,8 +3,11 @@ package partials
 import "Jordan-Tech-Companies/internal/models"
 
 templ CompanyCard(c models.Company) {
-    <div class="card">
-        <h3>{ c.Name }</h3>
-        <p>{ c.Location }</p>
+    <div class="card" style="width: 18rem;">
+        <img src="/static/images/Google_logo.png" class="card-img-top" alt="Google Logo">
+        <div class="card-body">
+            <h5 class="card-title text-primary">{ c.Name }</h5>
+                <p class="card-text small">{ c.Location }</p>
+        </div>
     </div>
 }

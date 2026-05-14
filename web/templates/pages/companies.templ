@@ -9,9 +9,11 @@ import (
 templ CompaniesList(companies []models.Company) {
 	@layouts.Base("All Companies") {
         <h1>Directory</h1>
-        <div class="grid">
+        <div class="row">
             for _, c := range companies {
-                @partials.CompanyCard(c) // Reusing the Partial
+                <div class="col-md-2 col-sm-2 mb-2">
+                    @partials.CompanyCard(c) // Reusing the Partial
+                </div>
             }
         </div>
     }
