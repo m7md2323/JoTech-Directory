@@ -3,13 +3,13 @@ package models
 type Company struct {
 	ID uint `gorm:"primaryKey"`
 	Name string 
-	Location string 
-	LocationURL string
-	Size string 
+	Location string //example: [Amman]
+	LocationURL string //Google map link
+	Size string // startup, mid-size, locally known[large-l], regional known[large-r], international [large-i]  
 	Logo string //card logo path file
 }
 
-var Companies = []Company{
+/*var Companies = []Company{
 	{
 		Name : "Amazon",
 		Location: "Amman",
@@ -28,4 +28,4 @@ var Companies = []Company{
 		Size: "Mid-Size",
 		Logo: "",
 	},
-}
+}*/

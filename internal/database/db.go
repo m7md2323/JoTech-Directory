@@ -7,6 +7,7 @@ import (
     "log"
     "os"
     "github.com/joho/godotenv"
+    "fmt"
 )
 
 var DB *gorm.DB
@@ -18,11 +19,8 @@ func ConnectDatabase() {
     }
 
     path := os.Getenv("DATABASE_FILE_PATH")
-    if path == "" {
-        path = "./data_link/storage.db"
-    }
-
     
+    fmt.Println(path)
     database, err := gorm.Open(sqlite.Open(path), &gorm.Config{})
     if err != nil {
         log.Fatal("Failed to connect to database!", err)
@@ -32,3 +30,18 @@ func ConnectDatabase() {
 
     DB = database
 }
+
+func ReturnAllCompanies() []models.Company{
+    companies:=[]models.Company{}
+    result := DB.Find(&companies)
+    if result.RowsAffected == 0 {
+        fmt.Println("No Rows where found! Something went wrong",result.Error)
+        return nil
+    }
+    return companies;
+}
+
+
+
+
+
