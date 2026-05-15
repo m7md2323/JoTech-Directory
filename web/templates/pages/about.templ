@@ -1,0 +1,56 @@
+package pages
+
+import "Jordan-Tech-Companies/web/templates/layouts"
+
+templ About() {
+    @layouts.Base("About") {
+        <div class="container-lg">
+            <h1 class="mb-4">About JoTech Directory</h1>
+            
+            <div class="row mb-5">
+                <div class="col-md-8">
+                    <h2>Our Mission</h2>
+                    <p class="lead">
+                        JoTech Directory is a comprehensive directory dedicated to showcasing the vibrant tech ecosystem of Jordan. We believe in connecting innovative companies with talent, investors, and opportunities to drive growth and innovation across the region.
+                    </p>
+                    <p>
+                        Our platform makes it easy to discover, learn about, and connect with the leading technology companies that are shaping Jordan's digital future.
+                    </p>
+                </div>
+            </div>
+
+            <h2 class="mb-3">Our Values</h2>
+            <div class="row g-4 mb-5">
+                <div class="col-md-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Innovation</h5>
+                            <p class="card-text">We celebrate and promote innovative thinking and groundbreaking solutions in Jordan's tech sector.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Collaboration</h5>
+                            <p class="card-text">We believe in the power of partnerships and bringing people together to achieve greater goals.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Community</h5>
+                            <p class="card-text">Our platform is built for the community, supporting growth and development of Jordan's tech landscape.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-light border p-4 text-center">
+                <h3 class="mb-3">Open Source</h3>
+                <p class="mb-0">JoTech Directory is an open-source project. We believe in the power of community contributions and transparency. You can find our code, contribute, and help us improve the platform on GitHub.</p>
+            </div>
+        </div>
+    }
+}
