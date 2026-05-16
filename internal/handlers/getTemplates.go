@@ -19,3 +19,10 @@ func About(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 
 }
+func Contact(w http.ResponseWriter, r *http.Request) {
+
+	page := pages.Contact()
+	page.Render(r.Context(), w)
+	w.WriteHeader(http.StatusOK)
+
+}
