@@ -11,11 +11,14 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-	"github.com/joho/godotenv"
 )
 
 func PostAddCompany(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
+	err := r.ParseMultipartForm(32 << 20)
+	if err != nil {
+		http.Error(w, "Error parsing multipart form", http.StatusBadRequest)
+		return
+	}
 
 	
 
@@ -38,19 +41,28 @@ func PostAddCompany(w http.ResponseWriter, r *http.Request) {
 	links := []models.Link{}
 	tags := []models.Tags{}
 
-	locationsString := r.Form["locations"]
-	locationUrlString := r.Form["locationUrl"]
 	tagsString := r.Form["tags"]
-
-	for i := range locationsString {
-		locations = append(locations, models.Location{
-			City: locationsString[i],
-			URL:  locationUrlString[i],
-		})
-	}
 
 	for i := range tagsString {
 		tags = append(tags, models.Tags(tagsString[i]))
+	}
+
+	baseCity := r.FormValue("city")
+	baseCiryURL := r.FormValue("locationUrl")
+
+	locations = append(locations, models.Location{
+		City: baseCity,
+		URL:  baseCiryURL,
+	})
+
+	otherCities := r.Form["other_cities"]
+	otherCitiesURLs:=r.Form["other_locationUrls"]
+
+	for i := range otherCities {
+		locations = append(locations, models.Location{
+			City: otherCities[i],
+			URL:  otherCitiesURLs[i],
+		})
 	}
 
 	website := r.FormValue("website")
@@ -78,6 +90,7 @@ func PostAddCompany(w http.ResponseWriter, r *http.Request) {
 	logo, logoHeader, err1 := r.FormFile("logo")
 	if err1 != nil {
 		log.Println(err1)
+		return
 	}
 	defer logo.Close()
 
@@ -117,10 +130,7 @@ func PostAddCompany(w http.ResponseWriter, r *http.Request) {
 }
 
 func saveFile(file multipart.File, path string) {
-	err := godotenv.Load()
-	if err != nil {
-		log.Println("No .env file found or error reading it, using defaults if applicable")
-	}
+	
 
 	uploadsPath := os.Getenv("UPLOADS_FOLDER_PATH")
 
