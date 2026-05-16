@@ -3,14 +3,23 @@ package partials
 import "Jordan-Tech-Companies/internal/models"
 
 templ CompanyCard(c models.Company) {
-    <div class="card h-100 shadow-sm">
-        <div class="card-body text-center">
-            <img src="/static/images/Google_logo.png" alt="{ c.Name } logo" class="img-fluid mb-3" style="max-height: 80px;">
-            <h5 class="card-title fw-bold mb-1">{ c.Name }</h5>
-            <p class="text-muted small mb-2">
-                <i class="fas fa-map-marker-alt"></i> { c.Location }
-            </p>
-            <span class="badge bg-secondary">{ c.Size }</span>
+    <a hx-get={"/company/" + c.Name} hx-push-url="true" class="card-link-wrapper">
+        <div class="card" style="width: 18rem;">
+            <img src={"/static/images/" + c.Logo} alt="{ c.Name } logo" class="card-img-top company-logo">
+                <div class="card-body">
+                <div class="card-body">
+                    <h5 class="card-title">{ c.Name }</h5>
+                    <p class="card-text small">
+                        <i class="fas fa-map-marker-alt me-1"></i>
+                        if len(c.Locations) > 0 {
+                            { c.Locations[0].City }
+                        }
+                    </p>
+                    <div class="mt-2">
+                        <span class="badge bg-secondary">{ string(c.Size) }</span>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </a>
 }

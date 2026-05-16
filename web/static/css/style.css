@@ -18,7 +18,7 @@ a:hover { color: #a8ccf5; }
 
 /* Navbar */
 .navbar {
-    background-color: #222 !important;
+    background-color: #111 !important;
     border-bottom: 1px solid #333;
 }
 .navbar-brand { color: #f0f0f0 !important; }
@@ -102,3 +102,53 @@ a:hover { color: #a8ccf5; }
 .border { border-color: #333 !important; }
 .border-top { border-color: #333 !important; }
 .border-secondary { border-color: #444 !important; }
+
+/* Company Card Styling */
+.card-link-wrapper {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    cursor: pointer;
+}
+
+.card-link-wrapper:hover .card {
+    border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(74, 158, 255, 0.2);
+}
+
+.card-img-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    padding: 1.5rem;
+    border-bottom: 1px solid #333;
+    object-fit: contain;
+}
+
+.company-logo {
+    max-height: 100%;
+    max-width: 100%;
+    transition: transform 0.2s ease;
+}
+
+.card-link-wrapper:hover .company-logo {
+    transform: scale(1.06);
+}
+
+.card-title {
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.card-text {
+    color: #999;
+    margin-bottom: 0;
+}
+
+.badge {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.5rem;
+    text-transform: capitalize;
+}
