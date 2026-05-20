@@ -1,65 +1,87 @@
 package models
 
-type Size int
-const (
-    Startup    Size = iota   // 0
-	Small					 //1
-    MidSize                  // 2
-    Large             // 3
-    RegionallyLarge            // 4
-    InternationallyLarge            // 5
+import (
+	"time"
+
 )
 
-type Tags int 
+type Size string
 const (
-	SoftwareDevelopment	Tags = iota // 0
-	WebDevelopment					// 1	
-	MobileDevelopment				// 2	
-	AI								// 3	
-	MachineLearning					// 4	
-	DeepLearning					// 5	
-	DataScience						// 6
-	CloudComputing					// 7	
-	Blockchain						// 8	
-	InternetOfThings				// 9	
-	Cybersecurity					// 10	
-	Robotics						// 11
-	EmbeddedSystems					// 12	
-	AugmentedReality				// 13	
-	VirtualReality					// 14	
-	GameDevelopment					// 15	
-	ECommerce						// 16	
-	HealthTech						// 17	
-	FinTech							// 18	
-	EdTech							// 19	
-	AdTech							// 20	
-	MarTech							// 21	
-	PrivateCompany					// 22	
-	GovermentalCompany				// 23	
-	NonProfitCompany				// 24
-	Drones							// 25
-	InternshipProgrames				// 26
-	DataAnalysis					// 27
-	Networking						// 28
-	Freelance						// 29
-	ComputerVision					// 30
-	HR								// 31
-	
+    Startup    				Size = "Startup"
+	Small					Size = "Small"
+    Medium                  Size = "Medium"
+    Large                   Size = "Large"
+	Enterprise              Size = "Enterprise"
+	MultiNational           Size = "Multi-National"
 )
+
+type Type string
+const (
+    PrivateCompany          Type = "Private Company"
+	GovernmentalCompany     Type = "Governmental Company"
+	NonProfit               Type = "Non-Profit"
+)
+
+
+type Tags string
+const (
+	SoftwareDevelopment		Tags = "Software Development"
+	WebDevelopment			Tags = "Web Development"	
+	MobileDevelopment		Tags = "Mobile Development"	
+	AI						Tags = "AI"	
+	MachineLearning			Tags = "Machine Learning"	
+	DeepLearning			Tags = "Deep Learning"	
+	DataScience				Tags = "Data Science"       
+	CloudComputing			Tags = "Cloud Computing"     
+	Blockchain				Tags = "Blockchain"         
+	InternetOfThings		Tags = "Internet Of Things"    
+	Cybersecurity			Tags = "Cyber Security"      
+	Robotics				Tags = "Robotics"           
+	EmbeddedSystems			Tags = "Embedded Systems"    
+	AugmentedReality		Tags = "Augmented Reality"  
+	VirtualReality			Tags = "Virtual Reality"    
+	GameDevelopment			Tags = "Game Development"  
+	ECommerce				Tags = "ECommerce"          
+	HealthTech				Tags = "Health Tech"          
+	FinTech					Tags = "FinTech"           
+	EdTech					Tags = "EdTech"            
+	AdTech					Tags = "AdTech"           
+	MarTech					Tags = "MarTech"          
+	Drones					Tags = "Drones"             
+	InternshipPrograms		Tags = "Internship Programs" 
+	DataAnalysis			Tags = "Data Analysis"       
+	Networking				Tags = "Networking"         
+	Freelance				Tags = "Freelance"          
+	ComputerVision			Tags = "Computer Vision"     
+	HumanResources			Tags = "Human Resources"
+)
+
+type Location struct {
+    City string
+    URL  string
+}
+
+type Link struct {
+    Platform string
+    URL      string
+}
 
 
 type Company struct {
 	ID uint `gorm:"primaryKey"`
-	Name string 
-	Locations []map[string]string //example: [{city:"Amman", url:"https://maps.app.goo.gl/was2LXQvWw7scD7QA"}] the first location is the base one.
+	Name string `gorm:"unique;not null"`
+	Locations []Location `gorm:"serializer:json"` //example: [{city:"Amman", url:"https://maps.app.goo.gl/was2LXQvWw7scD7QA"}] the first location is the base one.
 	Size Size
 	Logo string //card logo path file
 	ContactInfo string
-	SocialMedia []map[string]string //example: [{name:"Facebook", url:"https://facebook.com/"}]
+	Links []Link `gorm:"serializer:json"` //example: [{name:"Facebook", url:"https://facebook.com/"}]
 	EmployeeCount string
-	Tags []Tags //example: [AI, Fintech, E-commerce, Healthtech, Gaming, Edtech, etc.], and this will be used for searching and filtering.
+	Tags []Tags `gorm:"serializer:json"` //example: [AI, Fintech, E-commerce, Healthtech, Gaming, Edtech, etc.], and this will be used for searching and filtering.
 	ProfileImage string //profile page image path
-	Description string
+	Description string `gorm:"type:text"`
+	Type Type
+	CreatedAt time.Time `gorm:"autoCreateTime"`
+	UpdatedAt time.Time `gorm:"autoUpdateTime"`
 }
 
 
