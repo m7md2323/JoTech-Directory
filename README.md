@@ -1,9 +1,9 @@
 <h2>Tech Stack</h2>
 <h4>Backend & Database</h4>
-<ol>
+<ul>
   <li>Go net/http</li>
   <li>SQLite databse engine</li>
-</ol>
+</ul>
 <h4>Frontend</h4>
 <ul>
   <li>HTMX</li>
