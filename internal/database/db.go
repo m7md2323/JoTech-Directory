@@ -40,6 +40,17 @@ func ReturnAllCompanies() []models.Company {
 	return companies
 }
 
+func ReturnCompaniesByName(name string) []models.Company {
+	companies := []models.Company{}
+
+	result := DB.Where("name LIKE ?", name+"%").Find(&companies)
+	if result.RowsAffected == 0 {
+		fmt.Println("No Rows where found! Something went wrong", result.Error)
+		return nil
+	}
+	return companies
+}
+
 func ReturnCompaniesByQuery(query string) []models.Company {
 	companies := []models.Company{}
 	result := DB.Find(&companies)
