@@ -4,15 +4,14 @@
   <li>Go net/http</li>
   <li>SQLite databse engine</li>
 </ol>
-<br>
 <h4>Frontend</h4>
-<ol>
+<ul>
   <li>HTMX</li>
   <li>Templ</li>
   <li>Bootstrap + CSS</li>
-</ol>
+</ul>
 <h4>Hosting and Deployment</h4>
-<ol>
+<ul>
   <li>Docker Image</li>
   <li>Railway Hosting</li>
-</ol>
+</ul>
