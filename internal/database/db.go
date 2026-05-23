@@ -27,36 +27,57 @@ func ConnectDatabase() {
 	}
 
 	database.AutoMigrate(&models.Company{})
+	database.AutoMigrate(&models.Tag{})
+	database.AutoMigrate(&models.Event{})
+	database.AutoMigrate(&models.Location{})
 	DB = database
 }
 
-func ReturnAllCompanies() []models.Company {
+func ReturnAllCompanies() ([]models.Company,error) {
 	companies := []models.Company{}
-	result := DB.Find(&companies)
-	if result.RowsAffected == 0 {
-		fmt.Println("No Rows where found! Something went wrong", result.Error)
-		return nil
-	}
-	return companies
+	err := DB.Preload("Locations").Preload("Tags").Find(&companies).Error
+	return companies,err
 }
 
-func ReturnCompaniesByName(name string) []models.Company {
-	companies := []models.Company{}
+func ReturnAllEvents() ([]models.Event,error) {
+	events := []models.Event{}
+	err := DB.Preload("Locations").Preload("Tags").Find(&events).Error
+	return events,err
+}
+func ReturnCompaniesByQuery(paramas  models.FilterParams) ([]models.Company, error) {
 
-	result := DB.Where("name LIKE ?", name+"%").Find(&companies)
-	if result.RowsAffected == 0 {
-		fmt.Println("No Rows where found! Something went wrong", result.Error)
-		return nil
+	var companies []models.Company
+	query := DB.Model(&models.Company{}).Preload("Locations").Preload("Tags")
+	fmt.Println("Hello1 ",paramas)
+	if paramas.SearchTerm != "" {
+		query = query.Where("name LIKE ?","%" + paramas.SearchTerm + "%")		
+		fmt.Println(query.RowsAffected)
 	}
-	return companies
+
+	if len(paramas.Sizes) >0 && paramas.Sizes[0] != "" {
+		query=query.Where("size IN ?",paramas.Sizes)
+	}
+
+	if len(paramas.Types) >0 && paramas.Types[0] != ""{
+		query=query.Where("type IN ?",paramas.Types)
+	}
+
+	if len(paramas.Cities) > 0 && paramas.Cities[0] != ""{
+		query=query.Where("id IN (SELECT company_id FROM locations where city IN ?)",paramas.Cities)
+	}
+
+	if len(paramas.Tags) > 0 && paramas.Tags[0] != ""{
+		query=query.Where("id IN (SELECT company_id FROM tags where name IN ?)",paramas.Tags)
+	}
+
+	
+	err := query.Debug().Find(&companies).Error
+	fmt.Println(companies)	
+	return companies,err
 }
 
-func ReturnCompaniesByQuery(query string) []models.Company {
-	companies := []models.Company{}
-	result := DB.Find(&companies)
-	if result.RowsAffected == 0 {
-		fmt.Println("No Rows where found! Something went wrong", result.Error)
-		return nil
-	}
-	return companies
+func ReturnCompanyByName(name string) (models.Company,error) {
+	var company models.Company
+	err := DB.Preload("Locations").Preload("Tags").First(&company).Where("name = ?",name).Error
+	return company,err
 }
