@@ -22,8 +22,21 @@ const (
 	NonProfit               Type = "Non-Profit"
 )
 
+type Link struct {
+	Platform string `json:"platform"`
+	URL      string `json:"url"`
 
-type Tags string
+}
+
+type FilterParams struct {
+	SearchTerm string   // Text search input
+	Sizes      []string // From checkboxes: ["Small", "Medium"]
+	Types      []string // From checkboxes: ["Private Company"]
+	Cities     []string // From checkboxes: ["Amman", "Irbid"]
+	Tags       []string // From checkboxes: ["AI", "Web Development"]
+}
+
+/*type Tags string
 const (
 	SoftwareDevelopment		Tags = "Software Development"
 	WebDevelopment			Tags = "Web Development"	
@@ -66,22 +79,26 @@ type Link struct {
     URL      string
 }
 
-
+*/
 type Company struct {
 	ID uint `gorm:"primaryKey"`
 	Name string `gorm:"unique;not null"`
-	Locations []Location `gorm:"serializer:json"` //example: [{city:"Amman", url:"https://maps.app.goo.gl/was2LXQvWw7scD7QA"}] the first location is the base one.
-	Size Size
+	Size Size //startup, small, medium, large, enterprise, multi-national
 	Logo string //card logo path file
-	ContactInfo string
-	Links []Link `gorm:"serializer:json"` //example: [{name:"Facebook", url:"https://facebook.com/"}]
-	EmployeeCount string
-	Tags []Tags `gorm:"serializer:json"` //example: [AI, Fintech, E-commerce, Healthtech, Gaming, Edtech, etc.], and this will be used for searching and filtering.
+	ContactInfo string 
+	EmployeeCount string //example: "1-10", "11-50", "51-200", "201-500"
 	ProfileImage string //profile page image path
 	Description string `gorm:"type:text"`
-	Type Type
+	Type Type //Private Company, Governmental Company, Non-Profit
+
 	CreatedAt time.Time `gorm:"autoCreateTime"`
 	UpdatedAt time.Time `gorm:"autoUpdateTime"`
+
+	Locations []Location `gorm:"foreignKey:CompanyID"` //example: [{city:"Amman", url:"example.com"}] the first location is the base one.
+	Tags []Tag `gorm:"foreignKey:CompanyID"` //example: [AI, Fintech, E-commerce, Healthtech, Gaming, Edtech, etc.], and this will be used for searching and filtering.
+	Links []Link `gorm:"serializer:json"` //example: [{name:"Facebook", url:"https://facebook.com/"}]
+
 }
+
 
 
