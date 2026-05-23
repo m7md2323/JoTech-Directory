@@ -7,43 +7,119 @@ templ SearchAndFilter() {
     <div class="card mb-4">
         <div class="card-body">
             <div class="row g-3">
-                <div class="col-md-4">
-                    <label for="search" class="form-label small">Search</label>
-                    <input 
-                        type="search" 
-                        name="search" 
-                        class="form-control" 
-                        id="search"
-                        hx-get="/searchCompanies"
-                        hx-trigger="keyup changed delay:500ms"
-                        hx-target="#companies-list"
-                        placeholder="Company name..."
-                    >
-                </div>
-                <div class="col-md-4">
-                    <label for="city" class="form-label small">Location</label>
-                    <select id="city" name="city" class="form-select">
-                        <option value="">All Cities</option>
-                        for _, city := range models.CitiesList {
-                            <option value={ city }>{ city }</option>
-                        }
-                    </select>
-                </div>
-                <div class="col-md-4">
-                    <label for="size" class="form-label small">Company Size</label>
-                    <select id="size" name="size" class="form-select">
-                        <option value="">All Sizes</option>
-                        for _, size := range models.SizeList {
-                            <option value={ size }>{ size }</option>
-                        }
-                    </select>
-                </div>
-            </div>
-            <div class="mt-4">
-                <label class="form-label small">Selected Tags</label>
-                <div id="selected-tags" class="d-flex flex-wrap gap-2">
-                    <span class="badge bg-primary">AI <button type="button" class="btn-close btn-close-white ms-1" aria-label="Close"></button></span>
-                </div>
+                <form
+                    hx-get="/searchCompanies"         
+                    hx-target="#companies-list"          
+                    hx-trigger="change"      
+                    hx-include="[name]"                
+                    class="row g-3">
+
+                    <!-- Search -->
+                    <div class="col-md-6 col-lg-3">
+                        <label for="search" class="form-label small">Search</label>
+                        <input
+                            type="search"
+                            name="search"
+                            id="search"
+                            class="form-control"
+                            placeholder="Company name..."
+                            hx-trigger="keyup changed delay:500ms" />
+                    </div>
+
+                    <!-- City -->
+                    <div class="col-md-6 col-lg-3">
+                        <label class="form-label small">Location</label>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary w-100 text-start form-select"
+                                    type="button"
+                                    data-bs-toggle="dropdown"
+                                    data-bs-auto-close="outside"
+                                    aria-expanded="false">
+                                Select Locations...
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark w-100 shadow-sm border-secondary"
+                                style="max-height:300px; overflow-y:auto;">
+                               for _, city := range models.CitiesList {
+                                <li>
+                                    <label class="dropdown-item d-flex align-items-center"
+                                        style="cursor:pointer;">
+                                        <input
+                                            type="checkbox"
+                                            name="city"
+                                            value={ city }
+                                            class="form-check-input me-2 mt-0"
+                                            style="cursor:pointer;" />
+                                        { city }
+                                    </label>
+                                </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Size -->
+                    <div class="col-md-6 col-lg-3">
+                        <label class="form-label small">Company Size</label>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary w-100 text-start form-select"
+                                    type="button"
+                                    data-bs-toggle="dropdown"
+                                    data-bs-auto-close="outside"
+                                    aria-expanded="false">
+                                Select Sizes...
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark w-100 shadow-sm border-secondary"
+                                style="max-height:300px; overflow-y:auto;">
+                                for _, size := range models.SizeList {
+                                <li>
+                                    <label class="dropdown-item d-flex align-items-center"
+                                        style="cursor:pointer;">
+                                        <input
+                                            type="checkbox"
+                                            name="size"
+                                            value={ size }
+                                            class="form-check-input me-2 mt-0"
+                                            style="cursor:pointer;" />
+                                        { size }
+                                    </label>
+                                </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Tags dropdown -->
+                    <div class="col-md-6 col-lg-3">
+                        <label class="form-label small">Filter by Tags</label>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary w-100 text-start form-select"
+                                    type="button"
+                                    data-bs-toggle="dropdown"
+                                    data-bs-auto-close="outside"
+                                    aria-expanded="false">
+                                Select Tags...
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark w-100 shadow-sm border-secondary"
+                                style="max-height:300px; overflow-y:auto;">
+                               for _, tag := range models.TagsList {
+                                <li>
+                                    <label class="dropdown-item d-flex align-items-center"
+                                        style="cursor:pointer;">
+                                        <input
+                                            type="checkbox"
+                                            name="tag"
+                                            value={ tag }
+                                            class="form-check-input me-2 mt-0"
+                                            style="cursor:pointer;" />
+                                        { tag }
+                                    </label>
+                                </li>
+                                }
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

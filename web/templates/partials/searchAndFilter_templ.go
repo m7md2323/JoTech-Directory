@@ -31,79 +31,115 @@ func SearchAndFilter() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"card mb-4\"><div class=\"card-body\"><div class=\"row g-3\"><div class=\"col-md-4\"><label for=\"search\" class=\"form-label small\">Search</label> <input type=\"search\" name=\"search\" class=\"form-control\" id=\"search\" hx-get=\"/searchCompanies\" hx-trigger=\"keyup changed delay:500ms\" hx-target=\"#companies-list\" placeholder=\"Company name...\"></div><div class=\"col-md-4\"><label for=\"city\" class=\"form-label small\">Location</label> <select id=\"city\" name=\"city\" class=\"form-select\"><option value=\"\">All Cities</option> ")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"card mb-4\"><div class=\"card-body\"><div class=\"row g-3\"><form hx-get=\"/searchCompanies\" hx-target=\"#companies-list\" hx-trigger=\"change\" hx-include=\"[name]\" class=\"row g-3\"><!-- Search --><div class=\"col-md-6 col-lg-3\"><label for=\"search\" class=\"form-label small\">Search</label> <input type=\"search\" name=\"search\" id=\"search\" class=\"form-control\" placeholder=\"Company name...\" hx-trigger=\"keyup changed delay:500ms\"></div><!-- City --><div class=\"col-md-6 col-lg-3\"><label class=\"form-label small\">Location</label><div class=\"dropdown\"><button class=\"btn btn-outline-secondary w-100 text-start form-select\" type=\"button\" data-bs-toggle=\"dropdown\" data-bs-auto-close=\"outside\" aria-expanded=\"false\">Select Locations...</button><ul class=\"dropdown-menu dropdown-menu-dark w-100 shadow-sm border-secondary\" style=\"max-height:300px; overflow-y:auto;\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		for _, city := range models.CitiesList {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<option value=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<li><label class=\"dropdown-item d-flex align-items-center\" style=\"cursor:pointer;\"><input type=\"checkbox\" name=\"city\" value=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var2 string
 			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.ResolveAttributeValue(city)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/partials/searchAndFilter.templ`, Line: 28, Col: 48}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/partials/searchAndFilter.templ`, Line: 49, Col: 56}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var2)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\" class=\"form-check-input me-2 mt-0\" style=\"cursor:pointer;\"> ")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var3 string
 			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(city)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/partials/searchAndFilter.templ`, Line: 28, Col: 57}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/partials/searchAndFilter.templ`, Line: 52, Col: 46}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</option>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</label></li>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</select></div><div class=\"col-md-4\"><label for=\"size\" class=\"form-label small\">Company Size</label> <select id=\"size\" name=\"size\" class=\"form-select\"><option value=\"\">All Sizes</option> ")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</ul></div></div><!-- Size --><div class=\"col-md-6 col-lg-3\"><label class=\"form-label small\">Company Size</label><div class=\"dropdown\"><button class=\"btn btn-outline-secondary w-100 text-start form-select\" type=\"button\" data-bs-toggle=\"dropdown\" data-bs-auto-close=\"outside\" aria-expanded=\"false\">Select Sizes...</button><ul class=\"dropdown-menu dropdown-menu-dark w-100 shadow-sm border-secondary\" style=\"max-height:300px; overflow-y:auto;\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		for _, size := range models.SizeList {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<option value=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<li><label class=\"dropdown-item d-flex align-items-center\" style=\"cursor:pointer;\"><input type=\"checkbox\" name=\"size\" value=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var4 string
 			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.ResolveAttributeValue(size)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/partials/searchAndFilter.templ`, Line: 37, Col: 48}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/partials/searchAndFilter.templ`, Line: 80, Col: 56}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var4)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "\" class=\"form-check-input me-2 mt-0\" style=\"cursor:pointer;\"> ")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var5 string
 			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(size)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/partials/searchAndFilter.templ`, Line: 37, Col: 57}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/partials/searchAndFilter.templ`, Line: 83, Col: 46}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</option>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</label></li>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</select></div></div><div class=\"mt-4\"><label class=\"form-label small\">Selected Tags</label><div id=\"selected-tags\" class=\"d-flex flex-wrap gap-2\"><span class=\"badge bg-primary\">AI <button type=\"button\" class=\"btn-close btn-close-white ms-1\" aria-label=\"Close\"></button></span></div></div></div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</ul></div></div><!-- Tags dropdown --><div class=\"col-md-6 col-lg-3\"><label class=\"form-label small\">Filter by Tags</label><div class=\"dropdown\"><button class=\"btn btn-outline-secondary w-100 text-start form-select\" type=\"button\" data-bs-toggle=\"dropdown\" data-bs-auto-close=\"outside\" aria-expanded=\"false\">Select Tags...</button><ul class=\"dropdown-menu dropdown-menu-dark w-100 shadow-sm border-secondary\" style=\"max-height:300px; overflow-y:auto;\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		for _, tag := range models.TagsList {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<li><label class=\"dropdown-item d-flex align-items-center\" style=\"cursor:pointer;\"><input type=\"checkbox\" name=\"tag\" value=\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var6 string
+			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.ResolveAttributeValue(tag)
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/partials/searchAndFilter.templ`, Line: 111, Col: 55}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var6)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "\" class=\"form-check-input me-2 mt-0\" style=\"cursor:pointer;\"> ")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var7 string
+			templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(tag)
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/partials/searchAndFilter.templ`, Line: 114, Col: 45}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</label></li>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "</ul></div></div></form></div></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
