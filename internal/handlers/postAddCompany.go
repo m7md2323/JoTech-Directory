@@ -39,12 +39,15 @@ func PostAddCompany(w http.ResponseWriter, r *http.Request) {
 	*/
 	locations := []models.Location{}
 	links := []models.Link{}
-	tags := []models.Tags{}
+	tags := []models.Tag{}
 
 	tagsString := r.Form["tags"]
 
 	for i := range tagsString {
-		tags = append(tags, models.Tags(tagsString[i]))
+		tag:=models.Tag{
+			Name: tagsString[i],
+		}
+		tags = append(tags, tag)
 	}
 
 	baseCity := r.FormValue("city")
@@ -109,7 +112,7 @@ func PostAddCompany(w http.ResponseWriter, r *http.Request) {
 	saveFile(profileImage, newProfileImageFileName)
 
 	newCompany := models.Company{
-		Name:          r.FormValue("name"),
+		Name:   r.FormValue("name"),
 		Locations:     locations,
 		Size:          models.Size(r.FormValue("size")),
 		Type:          models.Type(r.FormValue("type")),

@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
 	"github.com/joho/godotenv"
 )
 
@@ -31,13 +32,16 @@ func main() {
 
 	mux.HandleFunc("GET /company/{name}", handlers.GetCompanyProfile)
 	mux.HandleFunc("GET /companies", handlers.Companies)
-	mux.HandleFunc("GET /searchCompanies", handlers.SearchCompanies)
+
+	mux.HandleFunc("GET /searchCompanies", handlers.SearchAndFilterCompanies)
 
 	mux.HandleFunc("GET /events", handlers.Events)
 
 	mux.HandleFunc("GET /add_company", handlers.GetAddCompany)
 	mux.HandleFunc("POST /add_company", handlers.PostAddCompany)
 
+	mux.HandleFunc("GET /add_event", handlers.GetAddEvent)
+	mux.HandleFunc("POST /add_event", handlers.PostAddEvent)
 
 	fmt.Println("Listening to port 8080")
 	log.Fatal(http.ListenAndServe(":8080", mux))
