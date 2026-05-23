@@ -1,0 +1,158 @@
+package pages
+
+import "Jordan-Tech-Companies/web/templates/layouts"
+import "Jordan-Tech-Companies/internal/models"
+
+templ AddEvent() {
+    @layouts.Base("Submit New Event") {
+        <div class="container-lg">
+            <h1 class="mb-3">Submit a New Event</h1>
+            <p class="lead mb-4">Add a new tech event to the Jordan Tech Directory.</p>
+            
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <form hx-post="/add_event" hx-target="#form-result" hx-encoding="multipart/form-data" class="needs-validation">
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">Event Name</label>
+                                <input type="text" id="name" name="name" class="form-control" required />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="contactInfo" class="form-label">Contact Info (Email/Phone)</label>
+                                <input type="text" id="contactInfo" name="contactInfo" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">Locations</label>
+                            <div id="branches-container">
+                                <div class="row g-3 mb-2">
+                                    <div class="col-md-5">
+                                        <label for="city" class="form-label text-muted small">Base Location (City)</label>
+                                        <select id="city" name="city" class="form-select" required>
+                                            <option value="" disabled selected>Select a city</option>
+                                            for _, city := range models.CitiesList {
+                                                <option value={ city }>{ city }</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <label for="locationUrl" class="form-label text-muted small">Location URL (Google Maps)</label>
+                                        <input type="url" id="locationUrl" name="locationUrl" class="form-control" placeholder="https://maps.app.goo.gl/..." />
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-outline-secondary mt-2" onclick="addBranch()">
+                                + Add Another Branch
+                            </button>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">Links</label>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-globe"></i></span>
+                                        <input type="url" name="website" class="form-control" placeholder="Website URL" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fab fa-linkedin"></i></span>
+                                        <input type="url" name="linkedin" class="form-control" placeholder="LinkedIn URL" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fab fa-twitter"></i></span>
+                                        <input type="url" name="twitter" class="form-control" placeholder="Twitter URL" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fab fa-facebook"></i></span>
+                                        <input type="url" name="facebook" class="form-control" placeholder="Facebook URL" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label for="logo" class="form-label">Event Logo</label>
+                                <input type="file" id="logo" name="logo" class="form-control" accept="image/*" />
+                                <div class="form-text">Square logo recommended (e.g., 400x400px).</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="profileImage" class="form-label">Profile Image</label>
+                                <input type="file" id="profileImage" name="profileImage" class="form-control" accept="image/*" />
+                                <div class="form-text">Wide banner or high-quality office photo.</div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea id="description" name="description" class="form-control" rows="4"></textarea>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label d-block">Tags</label>
+                            <div class="row g-2">
+                                for _, tag := range models.TagsList {
+                                    <div class="col-sm-6 col-md-4 col-lg-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="tags" value={ tag } id={ "tag-" + tag } />
+                                            <label class="form-check-label" for={ "tag-" + tag }>
+                                                { tag }
+                                            </label>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="submit" class="btn btn-primary px-4 py-2">Submit Event</button>
+                        </div>
+                        
+                        <div id="form-result" class="mt-3"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <template id="branch-template">
+            <div class="row g-3 mb-2 branch-row mt-1">
+                <div class="col-md-5">
+                    <select name="other_cities" class="form-select" required>
+                        <option value="" disabled selected>Select a city</option>
+                        for _, city := range models.CitiesList {
+                            <option value={ city }>{ city }</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <input type="url" name="other_locationUrls" class="form-control" placeholder="https://maps.app.goo.gl/..." />
+                </div>
+                <div class="col-md-1">
+                    <button type="button" class="btn btn-outline-danger w-100" onclick="this.closest('.branch-row').remove()"><i class="fas fa-trash"></i></button>
+                </div>
+            </div>
+        </template>
+
+        <script>
+            function addBranch() {
+                const container = document.getElementById('branches-container');
+                const template = document.getElementById('branch-template');
+                const clone = template.content.cloneNode(true);
+                container.appendChild(clone);
+            }
+        </script>
+    }
+}
+
+templ MessageAddEvent() {
+    <div class="alert alert-success" role="alert">
+        Event submitted successfully! We will review it shortly.
+    </div>
+}

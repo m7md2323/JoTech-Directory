@@ -1,4 +1,174 @@
 package pages
 
+import (
+	"fmt"
+	"Jordan-Tech-Companies/web/templates/layouts"
+	"Jordan-Tech-Companies/internal/models"
+)
 
-import "Jordan-Tech-Companies/web/templates/layouts"
+templ Events(events []models.Event) {
+	@layouts.Base("Events") {
+        <div class="container py-5">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="fw-bold display-6">Upcoming Events</h2>
+                    <p class="text-muted lead">Discover the latest hackathons, contests, and tech meetups.</p>
+                </div>
+            </div>
+
+            <div class="row d-flex flex-column align-items-center gap-3">
+                for _, event := range events {
+                    <div class="col-12 col-lg-9">
+                        <div class="card shadow-sm rounded-4 overflow-hidden border-dark event-card-hover" data-bs-toggle="modal" data-bs-target={"#eventModal-" + fmt.Sprint(event.ID)} style="background-color: #252525; cursor: pointer;">
+                            <div class="row g-0 align-items-center">
+                                <!-- Logo Section -->
+                                <div class="col-3 col-md-2 p-2 text-center border-end border-dark" style="background-color: #222; display: flex; align-items: center; justify-content: center; height: 110px;">
+                                    if event.Logo != "" {
+                                        <img src={"/static/images/" + event.Logo} alt={event.Name + " logo"} class="img-fluid" style="max-height: 80px; max-width: 80px; object-fit: contain;" />
+                                    } else {
+                                        <div class="text-muted"><i class="fas fa-calendar-alt fa-3x text-secondary opacity-50"></i></div>
+                                    }
+                                </div>
+                                
+                                <!-- Content Section -->
+                                <div class="col-7 col-md-9 p-3">
+                                    <div class="d-flex flex-column justify-content-center h-100">
+                                        <div class="d-flex align-items-center gap-2 mb-1">
+                                            <h5 class="card-title fw-bold mb-0 text-white text-truncate">{ event.Name }</h5>
+                                            <span class="badge bg-primary px-2 py-1 fw-semibold" style="font-size: 0.65rem;">
+                                                { string(event.Type) }
+                                            </span>
+                                        </div>
+                                        
+                                        <div class="fw-medium text-secondary d-flex align-items-center mb-1" style="font-size: 0.9rem;">
+                                            <i class="fas fa-map-marker-alt me-2 text-danger"></i>
+                                            if len(event.Locations) > 0 {
+                                                <span class="text-truncate">{ event.Locations[0].City }</span>
+                                            } else {
+                                                <span>Online / TBD</span>
+                                            }
+                                        </div>
+                                        
+                                        <p class="card-text text-muted mb-0" style="font-size: 0.85rem; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;">
+                                            { event.Description }
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Arrow Section -->
+                                <div class="col-2 col-md-1 d-flex align-items-center justify-content-center border-start border-dark" style="height: 110px; background-color: rgba(255,255,255,0.02);">
+                                    <i class="fas fa-chevron-right text-muted fs-4 arrow-icon"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal for Event Details -->
+                        <div class="modal fade" id={"eventModal-" + fmt.Sprint(event.ID)} tabindex="-1" aria-labelledby={"eventModalLabel-" + fmt.Sprint(event.ID)} aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-xl">
+                                <div class="modal-content border-dark" style="background-color: #1e1e1e; color: #fff;">
+                                    <div class="modal-header border-secondary border-bottom">
+                                        <h5 class="modal-title fw-bold fs-3 text-white" id={"eventModalLabel-" + fmt.Sprint(event.ID)}>{ event.Name }</h5>
+                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body p-4 p-md-5">
+                                        <div class="row g-5">
+                                            <!-- Modal Image / Info Sidebar -->
+                                            <div class="col-lg-4 text-center border-end border-secondary">
+                                                <div class="mb-4 d-flex justify-content-center align-items-center bg-dark rounded-3 border border-dark p-3" style="min-height: 200px;">
+                                                    if event.Logo != "" {
+                                                        <img src={"/static/images/" + event.Logo} alt={event.Name + " logo"} class="img-fluid rounded" style="max-height: 180px; object-fit: contain;" />
+                                                    } else {
+                                                        <i class="fas fa-calendar-alt fa-7x text-muted opacity-50"></i>
+                                                    }
+                                                </div>
+                                                
+                                                <div class="d-flex justify-content-center mb-3">
+                                                    <span class="badge bg-primary px-3 py-2 fs-6">{ string(event.Type) }</span>
+                                                </div>
+                                                
+                                                <div class="mb-4 text-secondary fs-5">
+                                                    <i class="fas fa-map-marker-alt me-2 text-danger"></i>
+                                                    if len(event.Locations) > 0 {
+                                                        { event.Locations[0].City }
+                                                    } else {
+                                                        <span>Online / TBD</span>
+                                                    }
+                                                </div>
+
+                                                if event.ContactInfo != "" {
+                                                    <div class="text-start p-3 rounded-3" style="background-color: #252525;">
+                                                        <h6 class="text-uppercase text-muted fw-bold mb-2">Contact</h6>
+                                                        <div class="text-light">
+                                                            <i class="fas fa-envelope me-2"></i> { event.ContactInfo }
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                            
+                                            <!-- Modal Description & Tags Main Area -->
+                                            <div class="col-lg-8">
+                                                <h4 class="fw-bold mb-3 border-bottom border-secondary pb-2 text-white">About Event</h4>
+                                                <p class="fs-5" style="color: #ccc; line-height: 1.8; white-space: pre-wrap;">{ event.Description }</p>
+                                                
+                                                if len(event.Tags) > 0 {
+                                                    <div class="mt-5">
+                                                        <h5 class="fw-bold mb-3 border-bottom border-secondary pb-2 text-white">Tags</h5>
+                                                        <div class="d-flex flex-wrap gap-2">
+                                                            for _, tag := range event.Tags {
+                                                                <span class="badge bg-secondary text-light px-3 py-2 fs-6">{ string(tag.Name) }</span>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    if len(event.Links) > 0 {
+                                        <div class="modal-footer border-secondary border-top p-4 d-flex justify-content-start gap-3">
+                                            for _, link := range event.Links {
+                                                <a href={ templ.URL(link.URL) } target="_blank" class="btn btn-primary px-4 py-2 fs-5 rounded-3">
+                                                    if link.Platform != "" {
+                                                        <i class="fas fa-external-link-square-alt me-2"></i> { link.Platform }
+                                                    } else {
+                                                        <i class="fas fa-external-link-alt me-2"></i> Visit Link
+                                                    }
+                                                </a>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                if len(events) == 0 {
+                    <div class="col-12 text-center py-5 my-5">
+                        <i class="fas fa-calendar-times fa-5x text-muted mb-4 opacity-50"></i>
+                        <h4 class="text-muted fw-bold">No events scheduled right now.</h4>
+                        <p class="text-secondary">Check back later for more exciting hackathons and tech events!</p>
+                    </div>
+                }
+            </div>
+        </div>
+        
+        <style>
+            .event-card-hover {
+                transition: background-color 0.2s ease, border-color 0.2s ease;
+            }
+            .event-card-hover:hover {
+                background-color: #2c2c2c !important;
+                border-color: #555 !important;
+            }
+            .event-card-hover:hover .arrow-icon {
+                color: #fff !important;
+                transform: translateX(4px);
+                transition: transform 0.2s ease, color 0.2s ease;
+            }
+            .arrow-icon {
+                transition: transform 0.2s ease, color 0.2s ease;
+            }
+        </style>
+	}
+}
