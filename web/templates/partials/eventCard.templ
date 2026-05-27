@@ -1,0 +1,51 @@
+package partials
+
+import (
+    "fmt"
+	"Jordan-Tech-Companies/internal/models"
+)
+
+templ EventCard(event models.Event){
+    <div class="card shadow-sm rounded-4 overflow-hidden border-dark event-card-hover" data-bs-toggle="modal" data-bs-target={"#eventModal-" + fmt.Sprint(event.ID)} style="background-color: #252525; cursor: pointer;">
+        <div class="row g-0 align-items-center">
+            <!-- Logo Section -->
+            <div class="col-3 col-md-2 p-2 text-center border-end border-dark" style="background-color: #222; display: flex; align-items: center; justify-content: center; height: 110px;">
+                if event.Logo != "" {
+                    <img src={"/static/images/" + event.Logo} alt={event.Name + " logo"} class="img-fluid" style="max-height: 80px; max-width: 80px; object-fit: contain;" />
+                } else {
+                    <div class="text-muted"><i class="fas fa-calendar-alt fa-3x text-secondary opacity-50"></i></div>
+                }
+            </div>
+            
+            <!-- Content Section -->
+            <div class="col-7 col-md-9 p-3">
+                <div class="d-flex flex-column justify-content-center h-100">
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <h5 class="card-title fw-bold mb-0 text-white text-truncate">{ event.Name }</h5>
+                        <span class="badge bg-primary px-2 py-1 fw-semibold" style="font-size: 0.65rem;">
+                            { string(event.Type) }
+                        </span>
+                    </div>
+                    
+                    <div class="fw-medium text-secondary d-flex align-items-center mb-1" style="font-size: 0.9rem;">
+                        <i class="fas fa-map-marker-alt me-2 text-danger"></i>
+                        if len(event.Locations) > 0 {
+                            <span class="text-truncate">{ event.Locations[0].City }</span>
+                        } else {
+                            <span>Online / TBD</span>
+                        }
+                    </div>
+                    
+                    <p class="card-text text-muted mb-0" style="font-size: 0.85rem; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;">
+                        { event.Description }
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Arrow Section -->
+            <div class="col-2 col-md-1 d-flex align-items-center justify-content-center border-start border-dark" style="height: 110px; background-color: rgba(255,255,255,0.02);">
+                <i class="fas fa-chevron-right text-muted fs-4 arrow-icon"></i>
+            </div>
+        </div>
+    </div>
+}

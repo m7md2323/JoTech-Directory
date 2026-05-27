@@ -87,33 +87,46 @@ func CompanyProfile(c models.Company) templ.Component {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</div></div></div><!-- About the Company Column --><div class=\"col-lg-8\"><div class=\"card border-dark h-100\"><div class=\"card-body\"><h2 class=\"card-title mb-3\">About the Company</h2><p class=\"card-text\" style=\"line-height: 1.6;\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</div></div></div><!-- About the Company Column --><div class=\"col-lg-8\"><div class=\"card border-dark h-100\"><div class=\"card-body\"><div class=\"d-flex justify-content-between align-items-center mb-3\"><h2 class=\"card-title m-0\">About the Company</h2><a href=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var5 string
-			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(c.Description)
+			var templ_7745c5c3_Var5 templ.SafeURL
+			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL("mailto:mohammadalharahsheh04@gmail.com?subject=Update Request for Company: " + c.Name))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/company_profile.templ`, Line: 36, Col: 46}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/company_profile.templ`, Line: 36, Col: 143}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</p></div></div></div></div><!-- Links, Location, and More Section --><div class=\"row mb-5\"><div class=\"col-12\"><div class=\"card border-dark\"><div class=\"card-body\"><h3 class=\"card-title mb-4\">Links, Location, and More</h3><div class=\"row\"><!-- Location --><div class=\"col-md-6 mb-3\"><h5 class=\"mb-2\"><i class=\"bi bi-geo-alt\"></i> Location</h5><p class=\"text-muted\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "\" class=\"btn btn-outline-primary btn-sm\"><i class=\"bi bi-pencil-square\"></i> Request Update</a></div><p class=\"card-text\" style=\"line-height: 1.6;\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var6 string
-			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(c.Locations[0].City)
+			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(c.Description)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/company_profile.templ`, Line: 55, Col: 78}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/company_profile.templ`, Line: 41, Col: 46}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</p></div><!-- Website --><div class=\"col-md-6 mb-3\"><h5 class=\"mb-2\"><i class=\"bi bi-globe\"></i> Website</h5></div></div></div></div></div></div></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</p></div></div></div></div><!-- Links, Location, and More Section --><div class=\"row mb-5\"><div class=\"col-12\"><div class=\"card border-dark\"><div class=\"card-body\"><h3 class=\"card-title mb-4\">Links, Location, and More</h3><div class=\"row\"><!-- Location --><div class=\"col-md-6 mb-3\"><h5 class=\"mb-2\"><i class=\"bi bi-geo-alt\"></i> Location</h5><p class=\"text-muted\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var7 string
+			templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(c.Locations[0].City)
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/company_profile.templ`, Line: 60, Col: 78}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</p></div><!-- Website --><div class=\"col-md-6 mb-3\"><h5 class=\"mb-2\"><i class=\"bi bi-globe\"></i> Website</h5></div></div></div></div></div></div></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

@@ -31,7 +31,12 @@ templ CompanyProfile(c models.Company){
                 <div class="col-lg-8">
                     <div class="card border-dark h-100">
                         <div class="card-body">
-                            <h2 class="card-title mb-3">About the Company</h2>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h2 class="card-title m-0">About the Company</h2>
+                                <a href={ templ.SafeURL("mailto:mohammadalharahsheh04@gmail.com?subject=Update Request for Company: " + c.Name) } class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-pencil-square"></i> Request Update
+                                </a>
+                            </div>
                             <p class="card-text" style="line-height: 1.6;">
                                 {c.Description}
                             </p>
