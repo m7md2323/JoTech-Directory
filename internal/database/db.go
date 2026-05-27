@@ -41,7 +41,7 @@ func ReturnAllCompanies() ([]models.Company,error) {
 
 func ReturnAllEvents() ([]models.Event,error) {
 	events := []models.Event{}
-	err := DB.Preload("Locations").Preload("Tags").Find(&events).Error
+	err := DB.Model(&models.Event{}).Preload("Locations").Preload("Tags").Find(&events).Error
 	return events,err
 }
 func ReturnCompaniesByQuery(paramas  models.FilterParams) ([]models.Company, error) {
@@ -78,6 +78,6 @@ func ReturnCompaniesByQuery(paramas  models.FilterParams) ([]models.Company, err
 
 func ReturnCompanyByName(name string) (models.Company,error) {
 	var company models.Company
-	err := DB.Preload("Locations").Preload("Tags").First(&company).Where("name = ?",name).Error
+	err := DB.Model(&models.Company{}).Preload("Locations").Preload("Tags").Where("name = ?",name).First(&company).Error
 	return company,err
 }
