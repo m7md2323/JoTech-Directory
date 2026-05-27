@@ -50,21 +50,42 @@ templ CompanyProfile(c models.Company){
                 <div class="col-12">
                     <div class="card border-dark">
                         <div class="card-body">
-                            <h3 class="card-title mb-4">Links, Location, and More</h3>
                             <div class="row">
                                 <!-- Location -->
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-3">
                                     <h5 class="mb-2">
-                                        <i class="bi bi-geo-alt"></i> Location
+                                        <i class="bi bi-geo-alt"></i> Locations
                                     </h5>
-                                    <p class="text-muted">{c.Locations[0].City}</p>
+                                    <p class="text-muted">Main branch:</p> 
+                                    <p>{c.Locations[0].City} : <a href={c.Locations[0].URL}>Google map</a></p>
+                                    for i, l := range c.Locations {
+                                        if i > 0 {
+                                            <p class="text-muted">{l.City} : <a href={c.Locations[0].URL}>Google map</a></p>
+                                        }else{
+                                            <p>Other branches: </p>
+                                        }
+                                    }
                                 </div>
                                 
-                                <!-- Website -->
-                                <div class="col-md-6 mb-3">
+                                <!-- Websites -->
+                                <div class="col-md-5 mb-2">
                                     <h5 class="mb-2">
-                                        <i class="bi bi-globe"></i> Website
+                                        <i class="bi bi-geo-alt"></i> Socials and Related Links
                                     </h5>
+                                    for _, l := range c.Links {
+                                        <p class="text-muted">{l.Platform} : <a href={l.URL}>{l.URL}</a></p>
+                                    }
+                                </div>
+                                <!--Tags and Technologies-->
+                                <div class="col-md-4 mb-2">
+                                    <h5 class="mb-2">
+                                        <i class="bi bi-geo-alt"></i> Tags and Technologies
+                                    </h5>
+                                    <ul>
+                                        for _, t := range c.Tags {
+                                            <li>{t.Name}</li>
+                                        }
+                                    </ul>
                                 </div>
                             </div>
                         </div>
