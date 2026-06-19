@@ -71,7 +71,7 @@ func callGeminiAPI(client *genai.Client, markdownContent string) (*ExtractionRes
 	2. If a specific piece of information is not found in the text, return an empty string "" for strings, or an empty array [] for lists.
 	3. The "size" field MUST be exactly one of these strings: "Startup", "Small", "Medium", "Large", "Enterprise", "Multi-National". For Size check linkedIn Employee Count, and based on that decied.
 	4. The "type" field MUST be exactly one of these strings: "Private Company", "Governmental Company", "Non-Profit". 
-	5. For "locations", extract the city, The Google Map URL starts with (https://www.google.com/maps/), Mostly they are in the contact page.
+	5. For "locations", Leave empty.
 	6. For "tags", extract the industry or tech stack : {
 		"Software Development", "Web Development", "Mobile Development", "AI", 
 		"Machine Learning", "Deep Learning", "Data Science", "Cloud Computing", 
@@ -81,8 +81,8 @@ func callGeminiAPI(client *genai.Client, markdownContent string) (*ExtractionRes
 		"Internship Programs", "Data Analysis", "Networking", "Freelance", 
 		"Computer Vision", "Human Resources",
 	}.
-	7. For "links", extract social media or website links, Mostly they are in the contact page.
-
+	7. For "links", put the website I gave you, and the linkedin webiste if exist.
+	8. For "description", write 40-60 words describing the company main tasks.  
 	You MUST use this exact JSON schema:
 	{
 	"name": "",
@@ -202,6 +202,31 @@ func saveToDatabase(data ExtractionResult) error {
 	Links []Link `gorm:"serializer:json"` //example: [{name:"Facebook", url:"https://facebook.com/"}]
 
 }	*/
+
+	locations:=[]models.Location{}
+	tags:=[]models.Tag{}
+	links:=[]models.Link{}
+
+	for _,loc :=range data.Locations {
+		locations=append(locations, models.Location{
+			City:	loc.City,
+			URL:	loc.URL,
+		})
+	}
+
+	for _,tag :=range data.Tags {
+		tags=append(tags, models.Tag{
+			Name:	tag.Name,
+		})
+	}
+
+	for _,link :=range data.Links {
+		links=append(links, models.Link{
+			Platform: link.Platform,
+			URL:	  link.URL,
+		})
+	}
+
     company := models.Company{
         Name:        	data.Name,
 		Size: 		 	models.Size(data.Size),
@@ -211,13 +236,17 @@ func saveToDatabase(data ExtractionResult) error {
 		ProfileImage: 	"",
 		Description: 	data.Description,
 		Type:		 	models.Type(data.Type),
-		Locations: 		data.Locations,
-		Tags:			data.Tags,
-		Links:			data.Links,	
+		Locations: 		locations,
+		Tags:			tags,
+		Links:			links,	
     }
 
 	result:=database.DB.Create(&company)
-    
+    if result.Error != nil {
+        log.Printf("Failed to save company %s to database: %v\n", data.Name, result.Error)
+    } else {
+        log.Printf("Successfully saved %s to database.\n", data.Name)
+    }
 	return result.Error
 	
 }
