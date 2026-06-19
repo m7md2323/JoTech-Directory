@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-
+	//"Jordan-Tech-Companies/internal/services"
 	"github.com/joho/godotenv"
 )
 
@@ -26,6 +26,8 @@ func main() {
 	mux.Handle("/static/", http.StripPrefix("/static/", fileServer))
 	//Routes
 
+	//services.AIWebScraper() //only run when needed
+
 	mux.HandleFunc("GET /{$}", handlers.Home)
 	mux.HandleFunc("GET /about", handlers.About)
 	mux.HandleFunc("GET /contact", handlers.Contact)
@@ -35,10 +37,18 @@ func main() {
 
 	mux.HandleFunc("GET /searchCompanies", handlers.SearchAndFilterCompanies)
 
+	mux.HandleFunc("GET /ui/branch-row", handlers.GetBranchRow)
+	mux.HandleFunc("GET /ui/link-row", handlers.GetLinkRow)
+
 	mux.HandleFunc("GET /events", handlers.Events)
 
 	mux.HandleFunc("GET /add_company", handlers.GetAddCompany)
 	mux.HandleFunc("POST /add_company", handlers.PostAddCompany)
+
+	mux.HandleFunc("GET /edit_company/{name}", handlers.GetEditCompany)
+	mux.HandleFunc("POST /edit_company", handlers.PostEditCompany)
+
+	mux.HandleFunc("POST /delete_company/{name}", handlers.DeleteCompany)
 
 	mux.HandleFunc("GET /add_event", handlers.GetAddEvent)
 	mux.HandleFunc("POST /add_event", handlers.PostAddEvent)
