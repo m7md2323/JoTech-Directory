@@ -30,6 +30,7 @@ func SearchAndFilterCompanies(w http.ResponseWriter, r *http.Request) {
 		Types:      r.Form["type"],
 		Cities:     r.Form["city"],
 		Tags:       r.Form["tag"],
+		Status:     r.FormValue("status"),
 	}	
 
 	companiesRes,err:=database.ReturnCompaniesByQuery(Paramas)
