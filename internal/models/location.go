@@ -1,10 +1,12 @@
 package models
 
+import (
+	"gorm.io/gorm"
+)
 
 type Location struct {
-	ID uint `gorm:"primaryKry"`
-	CompanyID uint `gorm:"index"`
-	City string `gorm:"type:text COLLATE NOCASE"`
-	URL string `gorm:"type:text"`
-
+    gorm.Model
+    CompanyID uint   `gorm:"index"`
+    City      string `gorm:"type:text;COLLATE NOCASE"`
+    URL       string `gorm:"type:text"`
 }

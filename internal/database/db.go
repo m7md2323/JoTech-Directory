@@ -26,16 +26,18 @@ func ConnectDatabase() {
 		log.Fatal("Failed to connect to database!", err)
 	}
 
+	database.Exec("PRAGMA foreign_keys = ON;")
+
 	database.AutoMigrate(&models.Company{})
 	database.AutoMigrate(&models.Tag{})
-	database.AutoMigrate(&models.Event{})
+	//database.AutoMigrate(&models.Event{})
 	database.AutoMigrate(&models.Location{})
 	DB = database
 }
 
 func ReturnAllCompanies() ([]models.Company,error) {
 	companies := []models.Company{}
-	err := DB.Preload("Locations").Preload("Tags").Find(&companies).Error
+	err := DB.Where("status = ?", "published").Preload("Locations").Preload("Tags").Find(&companies).Error
 	return companies,err
 }
 
@@ -70,6 +72,12 @@ func ReturnCompaniesByQuery(paramas  models.FilterParams) ([]models.Company, err
 		query=query.Where("id IN (SELECT company_id FROM tags where name IN ?)",paramas.Tags)
 	}
 
+	if paramas.Status == "draft" {
+		query = query.Where("status = ?", "draft")
+	} else {
+		query = query.Where("status = ?", "published")
+	}
+
 	
 	err := query.Debug().Find(&companies).Error
 	fmt.Println(companies)	
@@ -81,3 +89,4 @@ func ReturnCompanyByName(name string) (models.Company,error) {
 	err := DB.Model(&models.Company{}).Preload("Locations").Preload("Tags").Where("name = ?",name).First(&company).Error
 	return company,err
 }
+
