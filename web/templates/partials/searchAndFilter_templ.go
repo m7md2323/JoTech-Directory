@@ -139,7 +139,7 @@ func SearchAndFilter() templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "</ul></div></div></form></div></div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "</ul></div></div><!-- Temporary Draft Filter Toggle--><div class=\"col-md-12 mt-3\"><div class=\"form-check form-switch\"><input class=\"form-check-input\" type=\"checkbox\" role=\"switch\" id=\"draftToggle\" name=\"status\" value=\"draft\"> <label class=\"form-check-label text-warning fw-bold\" for=\"draftToggle\">Show Drafted Companies Only</label></div></div></form></div></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
