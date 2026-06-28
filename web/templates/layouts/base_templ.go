@@ -29,20 +29,20 @@ func Header(title string) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><meta name=\"description\" content=\"Discover and explore tech companies, startups, and innovators across Jordan.\"><title>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var2 string
 		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/layouts/base.templ`, Line: 7, Col: 22}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/layouts/base.templ`, Line: 8, Col: 22}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, " | JoTech Directory</title><link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB\" crossorigin=\"anonymous\"><link href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css\" rel=\"stylesheet\"><link href=\"/static/css/style.css\" rel=\"stylesheet\"><script src=\"https://unpkg.com/htmx.org@1.9.10\"></script></head>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, " | JoTech Directory</title><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap\" rel=\"stylesheet\"><link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB\" crossorigin=\"anonymous\"><link href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css\" rel=\"stylesheet\"><link href=\"/static/css/style.css?v=2\" rel=\"stylesheet\"><script src=\"https://unpkg.com/htmx.org@1.9.10\"></script></head>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -79,7 +79,7 @@ func Base(title string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<body class=\"d-flex flex-column min-vh-100\"><header><nav class=\"navbar navbar-expand-lg navbar-dark\"><div class=\"container-lg\"><a class=\"navbar-brand fw-bold\" href=\"/\">JoTech Directory</a> <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#mainNav\" aria-controls=\"mainNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><span class=\"navbar-toggler-icon\"></span></button><div class=\"collapse navbar-collapse\" id=\"mainNav\"><ul class=\"navbar-nav ms-auto\"><li class=\"nav-item\"><a class=\"nav-link\" href=\"/\">Home</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"/companies\">Companies</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"/events\">Events</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"/about\">About</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"/contact\">Contact</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"https://github.com/m7md2323/JoTech-Directory\" target=\"_blank\"><i class=\"fab fa-github\"></i></a></li></ul></div></div></nav></header><main class=\"flex-fill py-4\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<body class=\"d-flex flex-column min-vh-100\"><!-- Background layer: pure CSS, no JS --><div id=\"bg-layer\" aria-hidden=\"true\"></div><header><nav class=\"navbar navbar-expand-lg navbar-dark\"><div class=\"container-lg\"><a class=\"navbar-brand\" href=\"/\">JoTech<span style=\"color: var(--accent);\">.</span></a> <button class=\"navbar-toggler border-0\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#mainNav\" aria-controls=\"mainNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\" style=\"box-shadow:none;\"><span class=\"navbar-toggler-icon\"></span></button><div class=\"collapse navbar-collapse\" id=\"mainNav\"><ul class=\"navbar-nav ms-auto align-items-lg-center gap-1\"><li class=\"nav-item\"><a class=\"nav-link\" href=\"/\">Home</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"/companies\">Companies</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"/events\">Events</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"/about\">About</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"/contact\">Contact</a></li><li class=\"nav-item ms-lg-2\"><a class=\"nav-link\" href=\"https://github.com/m7md2323/JoTech-Directory\" target=\"_blank\" title=\"GitHub\"><i class=\"fab fa-github\"></i></a></li></ul></div></div></nav></header><main class=\"flex-fill py-4\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -124,7 +124,7 @@ func Footer() templ.Component {
 			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<footer class=\"footer bg-dark text-white pt-5 pb-3\"><div class=\"container-lg\"><div class=\"text-center mt-3 border-top pt-3 border-secondary\"><small>&copy; 2026 JoTech Directory. All rights reserved.</small></div></div></footer>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<footer class=\"footer pt-4 pb-3\"><div class=\"container-lg\"><div class=\"text-center pt-3 border-top\"><small>&copy; 2026 JoTech Directory &mdash; Built for Jordan's tech ecosystem.</small></div></div></footer>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
