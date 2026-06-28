@@ -80,7 +80,7 @@ func GetAddCompany() templ.Component {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</select></div><div class=\"col-md-7\"><label for=\"locationUrl\" class=\"form-label text-muted small\">Location URL (Google Maps)</label> <input type=\"url\" id=\"locationUrl\" name=\"locationUrl\" class=\"form-control\" placeholder=\"https://maps.app.goo.gl/...\"></div></div></div><button type=\"button\" class=\"btn btn-sm btn-outline-secondary mt-2\" onclick=\"addBranch()\">+ Add Another Branch</button></div><div class=\"mb-4\"><label class=\"form-label\">Links</label><div class=\"row g-3\"><div class=\"col-md-6\"><div class=\"input-group\"><span class=\"input-group-text\"><i class=\"fas fa-globe\"></i></span> <input type=\"url\" name=\"website\" class=\"form-control\" placeholder=\"Website URL\"></div></div><div class=\"col-md-6\"><div class=\"input-group\"><span class=\"input-group-text\"><i class=\"fab fa-linkedin\"></i></span> <input type=\"url\" name=\"linkedin\" class=\"form-control\" placeholder=\"LinkedIn URL\"></div></div><div class=\"col-md-6\"><div class=\"input-group\"><span class=\"input-group-text\"><i class=\"fab fa-twitter\"></i></span> <input type=\"url\" name=\"twitter\" class=\"form-control\" placeholder=\"Twitter URL\"></div></div><div class=\"col-md-6\"><div class=\"input-group\"><span class=\"input-group-text\"><i class=\"fab fa-facebook\"></i></span> <input type=\"url\" name=\"facebook\" class=\"form-control\" placeholder=\"Facebook URL\"></div></div></div></div><div class=\"row g-3 mb-4\"><div class=\"col-md-6\"><label for=\"logo\" class=\"form-label\">Company Logo</label> <input type=\"file\" id=\"logo\" name=\"logo\" class=\"form-control\" accept=\"image/*\"><div class=\"form-text\">Square logo recommended (e.g., 400x400px).</div></div><div class=\"col-md-6\"><label for=\"profileImage\" class=\"form-label\">Profile Image</label> <input type=\"file\" id=\"profileImage\" name=\"profileImage\" class=\"form-control\" accept=\"image/*\"><div class=\"form-text\">Wide banner or high-quality office photo.</div></div></div><div class=\"mb-4\"><label for=\"description\" class=\"form-label\">Description</label> <textarea id=\"description\" name=\"description\" class=\"form-control\" rows=\"4\"></textarea></div><div class=\"mb-4\"><label class=\"form-label d-block\">Tags</label><div class=\"row g-2\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</select></div><div class=\"col-md-7\"><label for=\"locationUrl\" class=\"form-label text-muted small\">Location URL (Google Maps)</label> <input type=\"url\" id=\"locationUrl\" name=\"locationUrl\" class=\"form-control\" placeholder=\"https://maps.app.goo.gl/...\"></div></div></div><button type=\"button\" class=\"btn btn-sm btn-outline-secondary mt-2\" hx-get=\"/ui/branch-row\" hx-target=\"#branches-container\" hx-swap=\"beforeend\">+ Add Another Branch</button></div><div class=\"mb-4\"><label class=\"form-label\">Links</label><div id=\"links-container\"><div class=\"row g-3 mb-2\"><div class=\"col-md-5\"><label for=\"platform\" class=\"form-label text-muted small\">Platform</label> <select id=\"platform\" name=\"platform\" class=\"form-select\"><option value=\"\" disabled selected>Select a platform</option> <option value=\"Website\">Website</option> <option value=\"LinkedIn\">LinkedIn</option> <option value=\"Twitter\">Twitter</option> <option value=\"Facebook\">Facebook</option> <option value=\"Instagram\">Instagram</option> <option value=\"GitHub\">GitHub</option> <option value=\"YouTube\">YouTube</option> <option value=\"Other\">Other</option></select></div><div class=\"col-md-7\"><label for=\"linkUrl\" class=\"form-label text-muted small\">URL</label> <input type=\"url\" id=\"linkUrl\" name=\"linkUrl\" class=\"form-control\" placeholder=\"https://...\"></div></div></div><button type=\"button\" class=\"btn btn-sm btn-outline-secondary mt-2\" hx-get=\"/ui/link-row\" hx-target=\"#links-container\" hx-swap=\"beforeend\">+ Add Another Link</button></div><div class=\"row g-3 mb-4\"><div class=\"col-md-6\"><label for=\"logo\" class=\"form-label\">Company Logo</label> <input type=\"file\" id=\"logo\" name=\"logo\" class=\"form-control\" accept=\"image/*\"><div class=\"form-text\">Square logo recommended (e.g., 400x400px).</div></div><div class=\"col-md-6\"><label for=\"profileImage\" class=\"form-label\">Profile Image</label> <input type=\"file\" id=\"profileImage\" name=\"profileImage\" class=\"form-control\" accept=\"image/*\"><div class=\"form-text\">Wide banner or high-quality office photo.</div></div></div><div class=\"mb-4\"><label for=\"description\" class=\"form-label\">Description</label> <textarea id=\"description\" name=\"description\" class=\"form-control\" rows=\"4\"></textarea></div><div class=\"mb-4\"><label class=\"form-label d-block\">Tags</label><div class=\"row g-2\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -92,7 +92,7 @@ func GetAddCompany() templ.Component {
 				var templ_7745c5c3_Var5 string
 				templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.ResolveAttributeValue(tag)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/add_company.templ`, Line: 130, Col: 115}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/add_company.templ`, Line: 129, Col: 115}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var5)
 				if templ_7745c5c3_Err != nil {
@@ -105,7 +105,7 @@ func GetAddCompany() templ.Component {
 				var templ_7745c5c3_Var6 string
 				templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.ResolveAttributeValue("tag-" + tag)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/add_company.templ`, Line: 130, Col: 135}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/add_company.templ`, Line: 129, Col: 135}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var6)
 				if templ_7745c5c3_Err != nil {
@@ -118,7 +118,7 @@ func GetAddCompany() templ.Component {
 				var templ_7745c5c3_Var7 string
 				templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.ResolveAttributeValue("tag-" + tag)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/add_company.templ`, Line: 131, Col: 94}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/add_company.templ`, Line: 130, Col: 94}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var7)
 				if templ_7745c5c3_Err != nil {
@@ -131,7 +131,7 @@ func GetAddCompany() templ.Component {
 				var templ_7745c5c3_Var8 string
 				templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(tag)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/add_company.templ`, Line: 132, Col: 53}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/add_company.templ`, Line: 131, Col: 53}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 				if templ_7745c5c3_Err != nil {
@@ -142,43 +142,7 @@ func GetAddCompany() templ.Component {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</div></div><div class=\"d-grid gap-2 d-md-flex justify-content-md-end\"><button type=\"submit\" class=\"btn btn-primary px-4 py-2\">Submit Company</button></div><div id=\"form-result\" class=\"mt-3\"></div></form></div></div></div><template id=\"branch-template\"><div class=\"row g-3 mb-2 branch-row mt-1\"><div class=\"col-md-5\"><select name=\"other_cities\" class=\"form-select\" required><option value=\"\" disabled selected>Select a city</option> ")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			for _, city := range models.CitiesList {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "<option value=\"")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				var templ_7745c5c3_Var9 string
-				templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.ResolveAttributeValue(city)
-				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/add_company.templ`, Line: 156, Col: 48}
-				}
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var9)
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "\">")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				var templ_7745c5c3_Var10 string
-				templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(city)
-				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/add_company.templ`, Line: 156, Col: 57}
-				}
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "</option>")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</select></div><div class=\"col-md-6\"><input type=\"url\" name=\"other_locationUrls\" class=\"form-control\" placeholder=\"https://maps.app.goo.gl/...\"></div><div class=\"col-md-1\"><button type=\"button\" class=\"btn btn-outline-danger w-100\" onclick=\"this.closest('.branch-row').remove()\"><i class=\"fas fa-trash\"></i></button></div></div></template><script>\n            function addBranch() {\n                const container = document.getElementById('branches-container');\n                const template = document.getElementById('branch-template');\n                const clone = template.content.cloneNode(true);\n                container.appendChild(clone);\n            }\n        </script>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</div></div><div class=\"d-grid gap-2 d-md-flex justify-content-md-end\"><button type=\"submit\" class=\"btn btn-primary px-4 py-2\">Submit Company</button></div><div id=\"form-result\" class=\"mt-3\"></div></form></div></div></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -208,12 +172,12 @@ func PostAddCompany() templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var11 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var11 == nil {
-			templ_7745c5c3_Var11 = templ.NopComponent
+		templ_7745c5c3_Var9 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var9 == nil {
+			templ_7745c5c3_Var9 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "<div class=\"alert alert-success\" role=\"alert\">Company submitted successfully! We will review it shortly.</div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "<div class=\"alert alert-success\" role=\"alert\">Company submitted successfully! We will review it shortly.</div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

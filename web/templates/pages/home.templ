@@ -5,62 +5,93 @@ import "Jordan-Tech-Companies/web/templates/layouts"
 templ Home() {
     @layouts.Base("Home") {
         <div class="container-lg">
-            <section class="hero p-5 mb-5 bg-light rounded text-center border">
-                <h1 class="display-4 fw-bold">JoTech Directory</h1>
-                <p class="lead">Discover tech companies, startups, and innovators across Jordan.</p>
-                <div class="mt-4">
-                    <a href="/companies" class="btn btn-primary btn-lg px-4 me-2">Browse Directory</a>
-                    <a href="/about" class="btn btn-outline-secondary btn-lg px-4">Learn More</a>
+
+            <!-- Hero -->
+            <section class="hero p-5 mb-5 text-center">
+                <div style="display:inline-flex; align-items:center; gap:0.5rem; background:var(--accent-subtle); border:1px solid rgba(99,102,241,0.2); border-radius:99px; padding:0.3rem 0.85rem; font-size:0.78rem; color:var(--accent); font-weight:500; margin-bottom:1.5rem;">
+                    <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;"></span>
+                    Jordan's tech ecosystem, mapped
+                </div>
+                <h1 class="display-4 fw-bold mb-3">JoTech Directory</h1>
+                <p class="lead mb-4" style="max-width: 520px; margin: 0 auto 1.75rem;">
+                    Discover tech companies, startups, and innovators across Jordan — all in one place.
+                </p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="/companies" class="btn btn-primary btn-lg">Browse Directory</a>
+                    <a href="/about" class="btn btn-outline-secondary btn-lg">Learn More</a>
                 </div>
             </section>
 
+            <!-- Features -->
             <section class="mb-5">
-                <h2 class="text-center mb-4">Why Use JoTech?</h2>
-                <div class="row g-4 text-center">
-                    <div class="col-md-4">
-                        <div class="card h-100 shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title fw-bold">Easy Discovery</h5>
-                                <p class="card-text">Search and filter companies by size, location, and focus.</p>
+                <h2 class="text-center mb-4" style="font-size:1.1rem; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.08em;">Why JoTech?</h2>
+                <div class="row g-3 text-center">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 shadow-sm" style="padding:0.25rem;">
+                            <div class="card-body py-4">
+                                <div style="width:40px;height:40px;border-radius:10px;background:var(--accent-subtle);border:1px solid rgba(99,102,241,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
+                                    <i class="fas fa-search" style="color:var(--accent);font-size:0.9rem;"></i>
+                                </div>
+                                <h5 class="card-title">Easy Discovery</h5>
+                                <p class="card-text">Search and filter companies by size, location, and focus area.</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card h-100 shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title fw-bold">Connect & Network</h5>
-                                <p class="card-text">Find the right people and companies to work with.</p>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 shadow-sm" style="padding:0.25rem;">
+                            <div class="card-body py-4">
+                                <div style="width:40px;height:40px;border-radius:10px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
+                                    <i class="fas fa-users" style="color:var(--success);font-size:0.9rem;"></i>
+                                </div>
+                                <h5 class="card-title">Connect &amp; Network</h5>
+                                <p class="card-text">Find the right people and companies to collaborate with.</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card h-100 shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title fw-bold">Market Insights</h5>
-                                <p class="card-text">Understand the landscape of Jordan's tech ecosystem.</p>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 shadow-sm" style="padding:0.25rem;">
+                            <div class="card-body py-4">
+                                <div style="width:40px;height:40px;border-radius:10px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
+                                    <i class="fab fa-github" style="color:var(--warning);font-size:0.9rem;"></i>
+                                </div>
+                                <h5 class="card-title">Open Source</h5>
+                                <p class="card-text">Contribute to the JoTech Directory and help map the ecosystem.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 shadow-sm" style="padding:0.25rem;">
+                            <div class="card-body py-4">
+                                <div style="width:40px;height:40px;border-radius:10px;background:rgba(13,202,240,0.08);border:1px solid rgba(13,202,240,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
+                                    <i class="fas fa-shield-alt" style="color:#0dcaf0;font-size:0.9rem;"></i>
+                                </div>
+                                <h5 class="card-title">Privacy First</h5>
+                                <p class="card-text">No login required. Your data is safe and cannot be tracked.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section class="mb-5 bg-light p-5 rounded border text-center">
-                <h2 class="mb-4">By The Numbers</h2>
+            <!-- Stats -->
+            <section class="mb-5 bg-light p-5 text-center">
+                <h2 class="mb-4" style="font-size:1rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;">By the numbers</h2>
                 <div class="row">
-                    <div class="col-md-4">
-                        <h3>100+</h3>
-                        <p class="text-muted">Companies</p>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div style="font-size:2.5rem;font-weight:800;color:var(--text-primary);letter-spacing:-0.04em;">100+</div>
+                        <p class="text-muted mb-0" style="font-size:0.875rem;">Companies listed</p>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div style="font-size:2.5rem;font-weight:800;color:var(--text-primary);letter-spacing:-0.04em;">0</div>
+                        <p class="text-muted mb-0" style="font-size:0.875rem;">Monthly visitors</p>
                     </div>
                     <div class="col-md-4">
-                        <h3>0</h3>
-                        <p class="text-muted">Visitors</p>
-                    </div>
-                    <div class="col-md-4">
-                        <h3>0</h3>
-                        <p class="text-muted">Sponsors</p>
+                        <div style="font-size:2.5rem;font-weight:800;color:var(--text-primary);letter-spacing:-0.04em;">0</div>
+                        <p class="text-muted mb-0" style="font-size:0.875rem;">Sponsors</p>
                     </div>
                 </div>
             </section>
+
         </div>
     }
 }

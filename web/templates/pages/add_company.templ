@@ -68,39 +68,38 @@ templ GetAddCompany() {
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-sm btn-outline-secondary mt-2" onclick="addBranch()">
+                            <button type="button" class="btn btn-sm btn-outline-secondary mt-2" hx-get="/ui/branch-row" hx-target="#branches-container" hx-swap="beforeend">
                                 + Add Another Branch
                             </button>
                         </div>
 
                         <div class="mb-4">
                             <label class="form-label">Links</label>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fas fa-globe"></i></span>
-                                        <input type="url" name="website" class="form-control" placeholder="Website URL" />
+                            <div id="links-container">
+                                <div class="row g-3 mb-2">
+                                    <div class="col-md-5">
+                                        <label for="platform" class="form-label text-muted small">Platform</label>
+                                        <select id="platform" name="platform" class="form-select">
+                                            <option value="" disabled selected>Select a platform</option>
+                                            <option value="Website">Website</option>
+                                            <option value="LinkedIn">LinkedIn</option>
+                                            <option value="Twitter">Twitter</option>
+                                            <option value="Facebook">Facebook</option>
+                                            <option value="Instagram">Instagram</option>
+                                            <option value="GitHub">GitHub</option>
+                                            <option value="YouTube">YouTube</option>
+                                            <option value="Other">Other</option>
+                                        </select>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fab fa-linkedin"></i></span>
-                                        <input type="url" name="linkedin" class="form-control" placeholder="LinkedIn URL" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fab fa-twitter"></i></span>
-                                        <input type="url" name="twitter" class="form-control" placeholder="Twitter URL" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fab fa-facebook"></i></span>
-                                        <input type="url" name="facebook" class="form-control" placeholder="Facebook URL" />
+                                    <div class="col-md-7">
+                                        <label for="linkUrl" class="form-label text-muted small">URL</label>
+                                        <input type="url" id="linkUrl" name="linkUrl" class="form-control" placeholder="https://..." />
                                     </div>
                                 </div>
                             </div>
+                            <button type="button" class="btn btn-sm btn-outline-secondary mt-2" hx-get="/ui/link-row" hx-target="#links-container" hx-swap="beforeend">
+                                + Add Another Link
+                            </button>
                         </div>
 
                         <div class="row g-3 mb-4">
@@ -147,33 +146,6 @@ templ GetAddCompany() {
             </div>
         </div>
 
-        <template id="branch-template">
-            <div class="row g-3 mb-2 branch-row mt-1">
-                <div class="col-md-5">
-                    <select name="other_cities" class="form-select" required>
-                        <option value="" disabled selected>Select a city</option>
-                        for _, city := range models.CitiesList {
-                            <option value={ city }>{ city }</option>
-                        }
-                    </select>
-                </div>
-                <div class="col-md-6">
-                    <input type="url" name="other_locationUrls" class="form-control" placeholder="https://maps.app.goo.gl/..." />
-                </div>
-                <div class="col-md-1">
-                    <button type="button" class="btn btn-outline-danger w-100" onclick="this.closest('.branch-row').remove()"><i class="fas fa-trash"></i></button>
-                </div>
-            </div>
-        </template>
-
-        <script>
-            function addBranch() {
-                const container = document.getElementById('branches-container');
-                const template = document.getElementById('branch-template');
-                const clone = template.content.cloneNode(true);
-                container.appendChild(clone);
-            }
-        </script>
     }
 }
 
