@@ -122,7 +122,6 @@ func PostAddCompany(w http.ResponseWriter, r *http.Request) {
 		Tags:          tags,
 		Description:   r.FormValue("description"),
 		Logo:          newLogoFileName,
-		ProfileImage:  newProfileImageFileName,
 	}
 
 	database.DB.Create(&newCompany)

@@ -92,7 +92,6 @@ type Company struct {
     Logo              string
     ContactInfo       string     `gorm:"column:contact_info"`
     EmployeeCount     string     `gorm:"column:employee_count"`
-    ProfileImage      string     `gorm:"column:profile_image"`
     Description       string
     Type 			  Type 
     Links []Link 				 `gorm:"serializer:json"`

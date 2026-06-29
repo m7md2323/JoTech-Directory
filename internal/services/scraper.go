@@ -225,7 +225,6 @@ func saveToDatabase(data ExtractionResult) error {
 		Logo:          " ",
 		ContactInfo:   data.ContactInfo,
 		EmployeeCount: " ",
-		ProfileImage:  "",
 		Description:   data.Description,
 		Type:          models.Type(data.Type),
 		Locations:     locations,

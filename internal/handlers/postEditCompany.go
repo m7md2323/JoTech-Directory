@@ -105,14 +105,8 @@ func PostEditCompany(w http.ResponseWriter, r *http.Request) {
 	} else {
 		defer logo.Close()
 	}
-	profileImage, ProfileHeader, profileImageErr := r.FormFile("profileImage")
-	if profileImageErr != nil {
-		log.Println("Image profile error", profileImageErr)
-	} else {
-		defer profileImage.Close()
-	}
+
 	var newLogoFileName string
-	var newProfileImageFileName string
 
 	if logoErr == nil {
 		newLogoFileName = r.FormValue("name") + "Logo" + filepath.Ext(logoHeader.Filename)
@@ -120,16 +114,10 @@ func PostEditCompany(w http.ResponseWriter, r *http.Request) {
 	} else {
 		newLogoFileName = company.Logo
 	}
-	if profileImageErr == nil {
-		newProfileImageFileName = r.FormValue("name") + "ProfileImage" + filepath.Ext(ProfileHeader.Filename)
-		saveFile(profileImage, newProfileImageFileName)
-	} else {
-		newProfileImageFileName = company.ProfileImage
-	}
 
 	
 
-	// 1. First, update the main fields of the company
+	//First, update the main fields of the company
 	updateErr:=database.DB.Model(&company).Updates(models.Company{
 
         Size:          models.Size(r.FormValue("size")),
@@ -138,7 +126,6 @@ func PostEditCompany(w http.ResponseWriter, r *http.Request) {
         EmployeeCount: r.FormValue("employeeCount"),
         Description:   r.FormValue("description"),
         Logo:          newLogoFileName,
-        ProfileImage:  newProfileImageFileName,
         Status:        "published",
     }).Error
 
