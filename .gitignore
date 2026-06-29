@@ -32,6 +32,6 @@ go.work.sum
 # .vscode/
 
 # SQLite databases
-*.db
+# *.db  # Commented out so users can pull the DB with data
 *.db-shm
 *.db-wal
