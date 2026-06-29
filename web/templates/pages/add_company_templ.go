@@ -80,7 +80,7 @@ func GetAddCompany() templ.Component {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</select></div><div class=\"col-md-7\"><label for=\"locationUrl\" class=\"form-label text-muted small\">Location URL (Google Maps)</label> <input type=\"url\" id=\"locationUrl\" name=\"locationUrl\" class=\"form-control\" placeholder=\"https://maps.app.goo.gl/...\"></div></div></div><button type=\"button\" class=\"btn btn-sm btn-outline-secondary mt-2\" hx-get=\"/ui/branch-row\" hx-target=\"#branches-container\" hx-swap=\"beforeend\">+ Add Another Branch</button></div><div class=\"mb-4\"><label class=\"form-label\">Links</label><div id=\"links-container\"><div class=\"row g-3 mb-2\"><div class=\"col-md-5\"><label for=\"platform\" class=\"form-label text-muted small\">Platform</label> <select id=\"platform\" name=\"platform\" class=\"form-select\"><option value=\"\" disabled selected>Select a platform</option> <option value=\"Website\">Website</option> <option value=\"LinkedIn\">LinkedIn</option> <option value=\"Twitter\">Twitter</option> <option value=\"Facebook\">Facebook</option> <option value=\"Instagram\">Instagram</option> <option value=\"GitHub\">GitHub</option> <option value=\"YouTube\">YouTube</option> <option value=\"Other\">Other</option></select></div><div class=\"col-md-7\"><label for=\"linkUrl\" class=\"form-label text-muted small\">URL</label> <input type=\"url\" id=\"linkUrl\" name=\"linkUrl\" class=\"form-control\" placeholder=\"https://...\"></div></div></div><button type=\"button\" class=\"btn btn-sm btn-outline-secondary mt-2\" hx-get=\"/ui/link-row\" hx-target=\"#links-container\" hx-swap=\"beforeend\">+ Add Another Link</button></div><div class=\"row g-3 mb-4\"><div class=\"col-md-6\"><label for=\"logo\" class=\"form-label\">Company Logo</label> <input type=\"file\" id=\"logo\" name=\"logo\" class=\"form-control\" accept=\"image/*\"><div class=\"form-text\">Square logo recommended (e.g., 400x400px).</div></div><div class=\"col-md-6\"><label for=\"profileImage\" class=\"form-label\">Profile Image</label> <input type=\"file\" id=\"profileImage\" name=\"profileImage\" class=\"form-control\" accept=\"image/*\"><div class=\"form-text\">Wide banner or high-quality office photo.</div></div></div><div class=\"mb-4\"><label for=\"description\" class=\"form-label\">Description</label> <textarea id=\"description\" name=\"description\" class=\"form-control\" rows=\"4\"></textarea></div><div class=\"mb-4\"><label class=\"form-label d-block\">Tags</label><div class=\"row g-2\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</select></div><div class=\"col-md-7\"><label for=\"locationUrl\" class=\"form-label text-muted small\">Location URL (Google Maps)</label> <input type=\"url\" id=\"locationUrl\" name=\"locationUrl\" class=\"form-control\" placeholder=\"https://maps.app.goo.gl/...\"></div></div></div><button type=\"button\" class=\"btn btn-sm btn-outline-secondary mt-2\" hx-get=\"/ui/branch-row\" hx-target=\"#branches-container\" hx-swap=\"beforeend\">+ Add Another Branch</button></div><div class=\"mb-4\"><label class=\"form-label\">Links</label><div id=\"links-container\"><div class=\"row g-3 mb-2\"><div class=\"col-md-5\"><label for=\"platform\" class=\"form-label text-muted small\">Platform</label> <select id=\"platform\" name=\"platform\" class=\"form-select\"><option value=\"\" disabled selected>Select a platform</option> <option value=\"Website\">Website</option> <option value=\"LinkedIn\">LinkedIn</option> <option value=\"Twitter\">Twitter</option> <option value=\"Facebook\">Facebook</option> <option value=\"Instagram\">Instagram</option> <option value=\"GitHub\">GitHub</option> <option value=\"YouTube\">YouTube</option> <option value=\"Other\">Other</option></select></div><div class=\"col-md-7\"><label for=\"linkUrl\" class=\"form-label text-muted small\">URL</label> <input type=\"url\" id=\"linkUrl\" name=\"linkUrl\" class=\"form-control\" placeholder=\"https://...\"></div></div></div><button type=\"button\" class=\"btn btn-sm btn-outline-secondary mt-2\" hx-get=\"/ui/link-row\" hx-target=\"#links-container\" hx-swap=\"beforeend\">+ Add Another Link</button></div><div class=\"row g-3 mb-4\"><div class=\"col-md-6\"><label for=\"logo\" class=\"form-label\">Company Logo</label> <input type=\"file\" id=\"logo\" name=\"logo\" class=\"form-control\" accept=\"image/*\"><div class=\"form-text\">Square logo recommended (e.g., 400x400px).</div></div></div><div class=\"mb-4\"><label for=\"description\" class=\"form-label\">Description</label> <textarea id=\"description\" name=\"description\" class=\"form-control\" rows=\"4\"></textarea></div><div class=\"mb-4\"><label class=\"form-label d-block\">Tags</label><div class=\"row g-2\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -92,7 +92,7 @@ func GetAddCompany() templ.Component {
 				var templ_7745c5c3_Var5 string
 				templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.ResolveAttributeValue(tag)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/add_company.templ`, Line: 129, Col: 115}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/add_company.templ`, Line: 124, Col: 115}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var5)
 				if templ_7745c5c3_Err != nil {
@@ -105,7 +105,7 @@ func GetAddCompany() templ.Component {
 				var templ_7745c5c3_Var6 string
 				templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.ResolveAttributeValue("tag-" + tag)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/add_company.templ`, Line: 129, Col: 135}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/add_company.templ`, Line: 124, Col: 135}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var6)
 				if templ_7745c5c3_Err != nil {
@@ -118,7 +118,7 @@ func GetAddCompany() templ.Component {
 				var templ_7745c5c3_Var7 string
 				templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.ResolveAttributeValue("tag-" + tag)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/add_company.templ`, Line: 130, Col: 94}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/add_company.templ`, Line: 125, Col: 94}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var7)
 				if templ_7745c5c3_Err != nil {
@@ -131,7 +131,7 @@ func GetAddCompany() templ.Component {
 				var templ_7745c5c3_Var8 string
 				templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(tag)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/add_company.templ`, Line: 131, Col: 53}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/add_company.templ`, Line: 126, Col: 53}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 				if templ_7745c5c3_Err != nil {

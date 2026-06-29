@@ -614,14 +614,14 @@ func GetEditCompany(company models.Company) templ.Component {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 91, "</div><button type=\"button\" class=\"btn btn-sm btn-outline-secondary mt-2\" hx-get=\"/ui/link-row\" hx-target=\"#links-container\" hx-swap=\"beforeend\">+ Add Another Link</button></div><div class=\"row g-3 mb-4\"><div class=\"col-md-6\"><label for=\"logo\" class=\"form-label\">Company Logo</label> <input type=\"file\" id=\"logo\" name=\"logo\" class=\"form-control\" accept=\"image/*\"><div class=\"form-text\">Square logo recommended (e.g., 400x400px).</div></div><div class=\"col-md-6\"><label for=\"profileImage\" class=\"form-label\">Profile Image</label> <input type=\"file\" id=\"profileImage\" name=\"profileImage\" class=\"form-control\" accept=\"image/*\"><div class=\"form-text\">Wide banner or high-quality office photo.</div></div></div><div class=\"mb-4\"><label for=\"description\" class=\"form-label\">Description</label> <textarea id=\"description\" name=\"description\" class=\"form-control\" rows=\"4\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 91, "</div><button type=\"button\" class=\"btn btn-sm btn-outline-secondary mt-2\" hx-get=\"/ui/link-row\" hx-target=\"#links-container\" hx-swap=\"beforeend\">+ Add Another Link</button></div><div class=\"row g-3 mb-4\"><div class=\"col-md-6\"><label for=\"logo\" class=\"form-label\">Company Logo</label> <input type=\"file\" id=\"logo\" name=\"logo\" class=\"form-control\" accept=\"image/*\"><div class=\"form-text\">Square logo recommended (e.g., 400x400px).</div></div></div><div class=\"mb-4\"><label for=\"description\" class=\"form-label\">Description</label> <textarea id=\"description\" name=\"description\" class=\"form-control\" rows=\"4\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var17 string
 			templ_7745c5c3_Var17, templ_7745c5c3_Err = templ.JoinStringErrs(company.Description)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/edit_company.templ`, Line: 207, Col: 125}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/edit_company.templ`, Line: 202, Col: 125}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var17))
 			if templ_7745c5c3_Err != nil {
@@ -639,7 +639,7 @@ func GetEditCompany(company models.Company) templ.Component {
 				var templ_7745c5c3_Var18 string
 				templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.ResolveAttributeValue(tag)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/edit_company.templ`, Line: 216, Col: 115}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/edit_company.templ`, Line: 211, Col: 115}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var18)
 				if templ_7745c5c3_Err != nil {
@@ -652,7 +652,7 @@ func GetEditCompany(company models.Company) templ.Component {
 				var templ_7745c5c3_Var19 string
 				templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.ResolveAttributeValue("tag-" + tag)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/edit_company.templ`, Line: 216, Col: 135}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/edit_company.templ`, Line: 211, Col: 135}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var19)
 				if templ_7745c5c3_Err != nil {
@@ -675,7 +675,7 @@ func GetEditCompany(company models.Company) templ.Component {
 				var templ_7745c5c3_Var20 string
 				templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.ResolveAttributeValue("tag-" + tag)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/edit_company.templ`, Line: 217, Col: 94}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/edit_company.templ`, Line: 212, Col: 94}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var20)
 				if templ_7745c5c3_Err != nil {
@@ -688,7 +688,7 @@ func GetEditCompany(company models.Company) templ.Component {
 				var templ_7745c5c3_Var21 string
 				templ_7745c5c3_Var21, templ_7745c5c3_Err = templ.JoinStringErrs(tag)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/edit_company.templ`, Line: 218, Col: 53}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/pages/edit_company.templ`, Line: 213, Col: 53}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var21))
 				if templ_7745c5c3_Err != nil {

@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520" fill="none">
+  <!--
+    Jordan geographic outline — simplified but recognizable.
+    Includes the Aqaba corridor in the south-west.
+    Used as a faint background silhouette at very low opacity.
+  -->
+  <path
+    d="
+      M 200 12
+      L 230 14
+      L 258 20
+      L 278 30
+      L 295 44
+      L 310 52
+      L 326 52
+      L 338 60
+      L 348 74
+      L 355 90
+      L 358 108
+      L 352 124
+      L 360 138
+      L 368 156
+      L 372 176
+      L 370 198
+      L 364 218
+      L 355 236
+      L 344 252
+      L 336 268
+      L 328 284
+      L 318 298
+      L 306 312
+      L 294 326
+      L 280 338
+      L 266 350
+      L 254 364
+      L 244 380
+      L 236 396
+      L 228 412
+      L 222 430
+      L 218 448
+      L 216 465
+      L 213 478
+      L 210 490
+      L 207 502
+      L 204 510
+      L 200 515
+
+      L 196 510
+      L 193 500
+      L 190 488
+
+      L 188 474
+      L 186 458
+      L 183 440
+
+      L 176 424
+      L 166 408
+      L 154 394
+      L 140 382
+      L 126 370
+      L 112 356
+      L 100 342
+      L 88  326
+      L 76  310
+      L 66  292
+      L 58  274
+      L 52  254
+      L 48  234
+      L 46  212
+      L 48  190
+      L 52  168
+      L 58  148
+      L 66  130
+      L 76  114
+      L 88  100
+      L 102 88
+      L 118 78
+      L 136 68
+      L 156 58
+      L 176 46
+      L 190 36
+      L 198 22
+      Z
+    "
+    fill="rgba(99,102,241,0.18)"
+    stroke="rgba(99,102,241,0.55)"
+    stroke-width="1.5"
+    stroke-linejoin="round"
+    stroke-dasharray="6 10"
+  />
+</svg>
