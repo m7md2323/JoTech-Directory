@@ -1,20 +1,17 @@
 package pages
 
 import (
+	"github.com/m7md2323/JoTech-Directory/internal/models"
 	"github.com/m7md2323/JoTech-Directory/web/templates/layouts"
 	"github.com/m7md2323/JoTech-Directory/web/templates/partials"
-	"github.com/m7md2323/JoTech-Directory/internal/models"
 )
 
 templ Companies(companies []models.Company) {
 	@layouts.Base("Companies") {
-        <div class="container-lg">
-            <p class="lead mb-4">Browse and discover tech companies operating in Jordan.</p>
-
-            @partials.SearchAndFilter()
-
-            @partials.CompaniesList(companies)
-
-        </div>
-    }
+		<div class="container-lg">
+			<p class="lead mb-4">Browse and discover tech companies operating in Jordan.</p>
+			@partials.SearchAndFilter()
+			@partials.CompaniesList(companies)
+		</div>
+	}
 }

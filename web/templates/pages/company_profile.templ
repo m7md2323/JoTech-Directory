@@ -1,158 +1,149 @@
 package pages
 
 import (
-    "github.com/m7md2323/JoTech-Directory/web/templates/layouts"
-    "github.com/m7md2323/JoTech-Directory/internal/models"
-    "strings"
-    "fmt"
-    "time"
+	"fmt"
+	"github.com/m7md2323/JoTech-Directory/internal/models"
+	"github.com/m7md2323/JoTech-Directory/web/templates/layouts"
+	"strings"
+	"time"
 )
 
-
-templ CompanyProfile(c models.Company){
-    @layouts.Base(c.Name) {
-        <div class="container-lg mt-4">
-
-            <!-- Back link -->
-            <a href="/companies" class="d-inline-flex align-items-center gap-2 mb-4" style="color:var(--text-muted);font-size:0.875rem;font-weight:500;transition:color 0.15s ease;"
-               onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-muted)'">
-                <i class="fas fa-arrow-left" style="font-size:0.75rem;"></i> All Companies
-            </a>
-
-            <!-- Profile Header -->
-            <div class="row g-4 mb-4">
-                <!-- Logo -->
-                <div class="col-lg-3">
-                    <div class="card h-100" style="min-height:220px;">
-                        <div class="card-body d-flex align-items-center justify-content-center">
-
-                            if c.Logo !=""{
-                                <img src={ "/static/images/" + c.Logo } alt={ c.Name + " logo" } style="max-height:180px;max-width:100%;object-fit:contain;">
-                            }
-                            else {
-                                <div class="text-center" style="color:var(--text-muted);">
-                                    <i class="fas fa-building" style="font-size:2.5rem;opacity:0.3;"></i>
-                                    <p class="mt-2 mb-0" style="font-size:0.8rem;">No image</p>
-                                </div>
-                            }
-                            
-                        </div>
-                    </div>
-                </div>
-
-                <!-- About -->
-                <div class="col-lg-9">
-                    <div class="card border-dark h-100">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-2">
-                                <div>
-                                    <h1 style="font-size:1.6rem;margin-bottom:0.25rem;">{ c.Name }</h1>
-                                    <div class="d-flex flex-wrap gap-2 mb-2">
-                                        if string(c.Size) != "" {
-                                            <span class="badge bg-secondary">{ string(c.Size) }</span>
-                                        }
-                                        if string(c.Type) != "" {
-                                            <span class="badge bg-secondary">{ string(c.Type) }</span>
-                                        }
-                                        if c.EmployeeCount != "" {
-                                            <span class="badge bg-secondary"><i class="fas fa-users me-1"></i> { c.EmployeeCount }</span>
-                                        }
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-column align-items-end gap-1" style="font-size:0.75rem;color:var(--text-muted);white-space:nowrap;">
-                                    <span><i class="fas fa-calendar-plus me-1"></i>{ fmt.Sprintf("%s %d, %d", c.CreatedAt.Month().String(), c.CreatedAt.Day(), c.CreatedAt.Year()) }</span>
-                                    if !c.UpdatedAt.IsZero() && c.UpdatedAt.After(c.CreatedAt.Add(time.Minute)) {
-                                        <span><i class="fas fa-pen me-1"></i>{ fmt.Sprintf("%s %d, %d", c.UpdatedAt.Month().String(), c.UpdatedAt.Day(), c.UpdatedAt.Year()) }</span>
-                                    }
-                                </div>
-                            </div>
-                            <p style="color:var(--text-secondary);line-height:1.75;font-size:0.925rem;">
-                                { c.Description }
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Details Row -->
-            <div class="row mb-5">
-                <div class="col-12">
-                    <div class="card border-dark">
-                        <div class="card-body">
-                            <div class="row g-4">
-
-                                <!-- Locations -->
-                                <div class="col-md-3">
-                                    <h6 style="font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-muted);margin-bottom:0.85rem;">
-                                        <i class="fas fa-map-marker-alt me-1" style="color:var(--accent);"></i> Locations
-                                    </h6>
-                                    if len(c.Locations) > 0 {
-                                        <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.25rem;">Main branch</p>
-                                        <p style="font-size:0.875rem;margin-bottom:0.5rem;">
-                                            { c.Locations[0].City } &mdash; <a href={ templ.SafeURL(c.Locations[0].URL) } style="font-size:0.8rem;">Map</a>
-                                        </p>
-                                        if len(c.Locations) > 1{
-                                            <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.25rem;">Other branches</p>
-                                        }
-                                        for i, l := range c.Locations {
-                                            if i > 0 {
-                                                <p style="font-size:0.875rem;color:var(--text-secondary);margin-bottom:0.35rem;">
-                                                    { l.City } &mdash; <a href={ templ.SafeURL(c.Locations[0].URL) } style="font-size:0.8rem;">Map</a>
-                                                </p>
-                                            }
-                                        }
-                                    } else {
-                                        <p style="color:var(--text-muted);font-size:0.875rem;">—</p>
-                                    }
-                                </div>
-
-                                <!-- Socials -->
-                                <div class="col-md-3">
-                                    <h6 style="font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-muted);margin-bottom:0.85rem;">
-                                        <i class="fas fa-link me-1" style="color:var(--accent);"></i> Socials &amp; Links
-                                    </h6>
-                                    <div class="d-flex flex-column gap-2">
-                                        for _, l := range c.Links {
-                                            <div class="d-flex align-items-center gap-2" style="font-size:0.875rem;">
-                                                <span style="color:var(--text-muted);min-width:80px;font-size:0.8rem;">{ l.Platform }</span>
-                                                <a href={ templ.SafeURL(l.URL) } style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:220px;display:inline-block;">{ l.URL }</a>
-                                            </div>
-                                        }
-                                    </div>
-                                </div>
-
-                                <!-- Contact Info -->
-                                <div class="col-md-3">
-                                    if c.ContactInfo != "" {
-                                        <h6 style="font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-muted);margin-bottom:0.85rem;">
-                                            <i class="fas fa-envelope me-1" style="color:var(--accent);"></i> Contact
-                                        </h6>
-                                        <div class="d-flex flex-column gap-2">
-                                            for _, contact := range strings.Split(c.ContactInfo, "|") {
-                                                <span style="font-size:0.875rem;word-break: break-word;max-width:220px;">{ strings.TrimSpace(contact) }</span>
-                                            }
-                                        </div>
-                                    }
-                                </div>
-
-                                <!-- Tags -->
-                                <div class="col-md-3">
-                                    <h6 style="font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-muted);margin-bottom:0.85rem;">
-                                        <i class="fas fa-tag me-1" style="color:var(--accent);"></i> Tags &amp; Tech
-                                    </h6>
-                                    <div class="d-flex flex-wrap gap-2">
-                                        for _, t := range c.Tags {
-                                            <span class="badge bg-secondary">{ t.Name }</span>
-                                        }
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    }
+templ CompanyProfile(c models.Company) {
+	@layouts.Base(c.Name) {
+		<div class="container-lg mt-4">
+			<!-- Back link -->
+			<a
+				href="/companies"
+				class="d-inline-flex align-items-center gap-2 mb-4"
+				style="color:var(--text-muted);font-size:0.875rem;font-weight:500;transition:color 0.15s ease;"
+				onmouseover="this.style.color='var(--text-primary)'"
+				onmouseout="this.style.color='var(--text-muted)'"
+			>
+				<i class="fas fa-arrow-left" style="font-size:0.75rem;"></i> All Companies
+			</a>
+			<!-- Profile Header -->
+			<div class="row g-4 mb-4">
+				<!-- Logo -->
+				<div class="col-lg-3">
+					<div class="card h-100" style="min-height:220px;">
+						<div class="card-body d-flex align-items-center justify-content-center">
+							if c.Logo !="" {
+								<img src={ "/static/images/" + c.Logo } alt={ c.Name + " logo" } style="max-height:180px;max-width:100%;object-fit:contain;"/>
+							} else {
+								<div class="text-center" style="color:var(--text-muted);">
+									<i class="fas fa-building" style="font-size:2.5rem;opacity:0.3;"></i>
+									<p class="mt-2 mb-0" style="font-size:0.8rem;">No image</p>
+								</div>
+							}
+						</div>
+					</div>
+				</div>
+				<!-- About -->
+				<div class="col-lg-9">
+					<div class="card border-dark h-100">
+						<div class="card-body">
+							<div class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-2">
+								<div>
+									<h1 style="font-size:1.6rem;margin-bottom:0.25rem;">{ c.Name }</h1>
+									<div class="d-flex flex-wrap gap-2 mb-2">
+										if string(c.Size) != "" {
+											<span class="badge bg-secondary">{ string(c.Size) }</span>
+										}
+										if string(c.Type) != "" {
+											<span class="badge bg-secondary">{ string(c.Type) }</span>
+										}
+										if c.EmployeeCount != "" {
+											<span class="badge bg-secondary"><i class="fas fa-users me-1"></i> { c.EmployeeCount }</span>
+										}
+									</div>
+								</div>
+								<div class="d-flex flex-column align-items-end gap-1" style="font-size:0.75rem;color:var(--text-muted);white-space:nowrap;">
+									<span><i class="fas fa-calendar-plus me-1"></i>{ fmt.Sprintf("%s %d, %d", c.CreatedAt.Month().String(), c.CreatedAt.Day(), c.CreatedAt.Year()) }</span>
+									if !c.UpdatedAt.IsZero() && c.UpdatedAt.After(c.CreatedAt.Add(time.Minute)) {
+										<span><i class="fas fa-pen me-1"></i>{ fmt.Sprintf("%s %d, %d", c.UpdatedAt.Month().String(), c.UpdatedAt.Day(), c.UpdatedAt.Year()) }</span>
+									}
+								</div>
+							</div>
+							<p style="color:var(--text-secondary);line-height:1.75;font-size:0.925rem;">
+								{ c.Description }
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Details Row -->
+			<div class="row mb-5">
+				<div class="col-12">
+					<div class="card border-dark">
+						<div class="card-body">
+							<div class="row g-4">
+								<!-- Locations -->
+								<div class="col-md-3">
+									<h6 style="font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-muted);margin-bottom:0.85rem;">
+										<i class="fas fa-map-marker-alt me-1" style="color:var(--accent);"></i> Locations
+									</h6>
+									if len(c.Locations) > 0 {
+										<p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.25rem;">Main branch</p>
+										<p style="font-size:0.875rem;margin-bottom:0.5rem;">
+											{ c.Locations[0].City } &mdash; <a href={ templ.SafeURL(c.Locations[0].URL) } style="font-size:0.8rem;">Map</a>
+										</p>
+										if len(c.Locations) > 1 {
+											<p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.25rem;">Other branches</p>
+										}
+										for i, l := range c.Locations {
+											if i > 0 {
+												<p style="font-size:0.875rem;color:var(--text-secondary);margin-bottom:0.35rem;">
+													{ l.City } &mdash; <a href={ templ.SafeURL(c.Locations[0].URL) } style="font-size:0.8rem;">Map</a>
+												</p>
+											}
+										}
+									} else {
+										<p style="color:var(--text-muted);font-size:0.875rem;">—</p>
+									}
+								</div>
+								<!-- Socials -->
+								<div class="col-md-3">
+									<h6 style="font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-muted);margin-bottom:0.85rem;">
+										<i class="fas fa-link me-1" style="color:var(--accent);"></i> Socials &amp; Links
+									</h6>
+									<div class="d-flex flex-column gap-2">
+										for _, l := range c.Links {
+											<div class="d-flex align-items-center gap-2" style="font-size:0.875rem;">
+												<span style="color:var(--text-muted);min-width:80px;font-size:0.8rem;">{ l.Platform }</span>
+												<a href={ templ.SafeURL(l.URL) } style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:220px;display:inline-block;">{ l.URL }</a>
+											</div>
+										}
+									</div>
+								</div>
+								<!-- Contact Info -->
+								<div class="col-md-3">
+									if c.ContactInfo != "" {
+										<h6 style="font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-muted);margin-bottom:0.85rem;">
+											<i class="fas fa-envelope me-1" style="color:var(--accent);"></i> Contact
+										</h6>
+										<div class="d-flex flex-column gap-2">
+											for _, contact := range strings.Split(c.ContactInfo, "|") {
+												<span style="font-size:0.875rem;word-break: break-word;max-width:220px;">{ strings.TrimSpace(contact) }</span>
+											}
+										</div>
+									}
+								</div>
+								<!-- Tags -->
+								<div class="col-md-3">
+									<h6 style="font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-muted);margin-bottom:0.85rem;">
+										<i class="fas fa-tag me-1" style="color:var(--accent);"></i> Tags &amp; Tech
+									</h6>
+									<div class="d-flex flex-wrap gap-2">
+										for _, t := range c.Tags {
+											<span class="badge bg-secondary">{ t.Name }</span>
+										}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	}
 }

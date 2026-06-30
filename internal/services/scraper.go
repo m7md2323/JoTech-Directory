@@ -143,8 +143,10 @@ func AIWebScraper() {
 			continue
 		}
 
-		saveToDatabase(*result)
-
+		saveErr:=saveToDatabase(*result)
+		if saveErr!=nil {
+			log.Println("Something went wrong while saving in scraper.go: ",saveErr)
+		}
 		time.Sleep(4 * time.Second)
 	}
 }

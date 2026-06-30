@@ -124,7 +124,10 @@ func PostAddCompany(w http.ResponseWriter, r *http.Request) {
 	database.DB.Create(&newCompany)
 
 	page := pages.PostAddCompany()
-	page.Render(r.Context(), w)
+	renderErr := page.Render(r.Context(), w)
+	if renderErr != nil {
+		log.Println("Something went wrong rendering ", renderErr)
+	}
 }
 
 func saveFile(file multipart.File, path string) {

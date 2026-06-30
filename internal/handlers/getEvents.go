@@ -16,5 +16,8 @@ func Events(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	page := pages.Events(events)
-	page.Render(r.Context(), w)
+	renderErr := page.Render(r.Context(), w)
+	if renderErr != nil {
+		log.Println("Something went wrong rendering ", renderErr)
+	}
 }

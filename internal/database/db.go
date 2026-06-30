@@ -26,10 +26,19 @@ func ConnectDatabase() {
 
 	database.Exec("PRAGMA foreign_keys = ON;")
 
-	database.AutoMigrate(&models.Company{})
-	database.AutoMigrate(&models.Tag{})
+	migrateError:= database.AutoMigrate(&models.Company{})
+	if migrateError != nil {
+		log.Println("Something went wrong while AutoMigrating Company model",migrateError)
+	}
+	migrateError = database.AutoMigrate(&models.Tag{})
+	if migrateError != nil {
+		log.Println("Something went wrong while AutoMigrating Tag model",migrateError)
+	}
 	//database.AutoMigrate(&models.Event{})
-	database.AutoMigrate(&models.Location{})
+	migrateError = database.AutoMigrate(&models.Location{})
+	if migrateError != nil {
+		log.Println("Something went wrong while AutoMigrating Location model",migrateError)
+	}
 	DB = database
 }
 

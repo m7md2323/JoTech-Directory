@@ -4,148 +4,138 @@ import "github.com/m7md2323/JoTech-Directory/web/templates/layouts"
 import "github.com/m7md2323/JoTech-Directory/internal/models"
 
 templ GetAddCompany() {
-    @layouts.Base("Submit New Company") {
-        <div class="container-lg">
-            <h1 class="mb-3">Submit a New Company</h1>
-            <p class="lead mb-4">Add a new tech company to the Jordan Tech Directory.</p>
-            
-            <div class="card shadow-sm mb-4">
-                <div class="card-body">
-                    <form hx-post="/add_company" hx-target="#form-result" hx-encoding="multipart/form-data" class="needs-validation">
-                        <div class="row g-3 mb-4">
-                            <div class="col-md-6">
-                                <label for="name" class="form-label">Company Name</label>
-                                <input type="text" id="name" name="name" class="form-control" required />
-                            </div>
-                            <div class="col-md-6">
-                                <label for="contactInfo" class="form-label">Contact Info (Email/Phone)</label>
-                                <input type="text" id="contactInfo" name="contactInfo" class="form-control" />
-                            </div>
-                        </div>
-
-                        <div class="row g-3 mb-4">
-                            <div class="col-md-4">
-                                <label for="size" class="form-label">Company Size</label>
-                                <select id="size" name="size" class="form-select">
-                                    <option value="Startup">Startup</option>
-                                    <option value="Small">Small</option>
-                                    <option value="Medium">Medium</option>
-                                    <option value="Large">Large</option>
-                                    <option value="Enterprise">Enterprise</option>
-                                    <option value="Multi-National">Multi-National</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="type" class="form-label">Company Type</label>
-                                <select id="type" name="type" class="form-select">
-                                    <option value="Private Company">Private Company</option>
-                                    <option value="Governmental Company">Governmental Company</option>
-                                    <option value="Non-Profit">Non-Profit</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="employeeCount" class="form-label">Employee Count</label>
-                                <input type="text" id="employeeCount" name="employeeCount" class="form-control" placeholder="e.g. 10-50" />
-                            </div>
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="form-label">Locations</label>
-                            <div id="branches-container">
-                                <div class="row g-3 mb-2">
-                                    <div class="col-md-5">
-                                        <label for="city" class="form-label text-muted small">Base Location (City)</label>
-                                        <select id="city" name="city" class="form-select" required>
-                                            <option value="" disabled selected>Select a city</option>
-                                            for _, city := range models.CitiesList {
-                                                <option value={ city }>{ city }</option>
-                                            }
-                                        </select>
-                                    </div>
-                                    <div class="col-md-7">
-                                        <label for="locationUrl" class="form-label text-muted small">Location URL (Google Maps)</label>
-                                        <input type="url" id="locationUrl" name="locationUrl" class="form-control" placeholder="https://maps.app.goo.gl/..." />
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-sm btn-outline-secondary mt-2" hx-get="/ui/branch-row" hx-target="#branches-container" hx-swap="beforeend">
-                                + Add Another Branch
-                            </button>
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="form-label">Links</label>
-                            <div id="links-container">
-                                <div class="row g-3 mb-2">
-                                    <div class="col-md-5">
-                                        <label for="platform" class="form-label text-muted small">Platform</label>
-                                        <select id="platform" name="platform" class="form-select">
-                                            <option value="" disabled selected>Select a platform</option>
-                                            <option value="Website">Website</option>
-                                            <option value="LinkedIn">LinkedIn</option>
-                                            <option value="Twitter">Twitter</option>
-                                            <option value="Facebook">Facebook</option>
-                                            <option value="Instagram">Instagram</option>
-                                            <option value="GitHub">GitHub</option>
-                                            <option value="YouTube">YouTube</option>
-                                            <option value="Other">Other</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-7">
-                                        <label for="linkUrl" class="form-label text-muted small">URL</label>
-                                        <input type="url" id="linkUrl" name="linkUrl" class="form-control" placeholder="https://..." />
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-sm btn-outline-secondary mt-2" hx-get="/ui/link-row" hx-target="#links-container" hx-swap="beforeend">
-                                + Add Another Link
-                            </button>
-                        </div>
-
-                        <div class="row g-3 mb-4">
-                            <div class="col-md-6">
-                                <label for="logo" class="form-label">Company Logo</label>
-                                <input type="file" id="logo" name="logo" class="form-control" accept="image/*" />
-                                <div class="form-text">Square logo recommended (e.g., 400x400px).</div>
-                            </div>
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="description" class="form-label">Description</label>
-                            <textarea id="description" name="description" class="form-control" rows="4"></textarea>
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="form-label d-block">Tags</label>
-                            <div class="row g-2">
-                                for _, tag := range models.TagsList {
-                                    <div class="col-sm-6 col-md-4 col-lg-3">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="tags" value={ tag } id={ "tag-" + tag } />
-                                            <label class="form-check-label" for={ "tag-" + tag }>
-                                                { tag }
-                                            </label>
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                        </div>
-
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button type="submit" class="btn btn-primary px-4 py-2">Submit Company</button>
-                        </div>
-                        
-                        <div id="form-result" class="mt-3"></div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-    }
+	@layouts.Base("Submit New Company") {
+		<div class="container-lg">
+			<h1 class="mb-3">Submit a New Company</h1>
+			<p class="lead mb-4">Add a new tech company to the Jordan Tech Directory.</p>
+			<div class="card shadow-sm mb-4">
+				<div class="card-body">
+					<form hx-post="/add_company" hx-target="#form-result" hx-encoding="multipart/form-data" class="needs-validation">
+						<div class="row g-3 mb-4">
+							<div class="col-md-6">
+								<label for="name" class="form-label">Company Name</label>
+								<input type="text" id="name" name="name" class="form-control" required/>
+							</div>
+							<div class="col-md-6">
+								<label for="contactInfo" class="form-label">Contact Info (Email/Phone)</label>
+								<input type="text" id="contactInfo" name="contactInfo" class="form-control"/>
+							</div>
+						</div>
+						<div class="row g-3 mb-4">
+							<div class="col-md-4">
+								<label for="size" class="form-label">Company Size</label>
+								<select id="size" name="size" class="form-select">
+									<option value="Startup">Startup</option>
+									<option value="Small">Small</option>
+									<option value="Medium">Medium</option>
+									<option value="Large">Large</option>
+									<option value="Enterprise">Enterprise</option>
+									<option value="Multi-National">Multi-National</option>
+								</select>
+							</div>
+							<div class="col-md-4">
+								<label for="type" class="form-label">Company Type</label>
+								<select id="type" name="type" class="form-select">
+									<option value="Private Company">Private Company</option>
+									<option value="Governmental Company">Governmental Company</option>
+									<option value="Non-Profit">Non-Profit</option>
+								</select>
+							</div>
+							<div class="col-md-4">
+								<label for="employeeCount" class="form-label">Employee Count</label>
+								<input type="text" id="employeeCount" name="employeeCount" class="form-control" placeholder="e.g. 10-50"/>
+							</div>
+						</div>
+						<div class="mb-4">
+							<label class="form-label">Locations</label>
+							<div id="branches-container">
+								<div class="row g-3 mb-2">
+									<div class="col-md-5">
+										<label for="city" class="form-label text-muted small">Base Location (City)</label>
+										<select id="city" name="city" class="form-select" required>
+											<option value="" disabled selected>Select a city</option>
+											for _, city := range models.CitiesList {
+												<option value={ city }>{ city }</option>
+											}
+										</select>
+									</div>
+									<div class="col-md-7">
+										<label for="locationUrl" class="form-label text-muted small">Location URL (Google Maps)</label>
+										<input type="url" id="locationUrl" name="locationUrl" class="form-control" placeholder="https://maps.app.goo.gl/..."/>
+									</div>
+								</div>
+							</div>
+							<button type="button" class="btn btn-sm btn-outline-secondary mt-2" hx-get="/ui/branch-row" hx-target="#branches-container" hx-swap="beforeend">
+								+ Add Another Branch
+							</button>
+						</div>
+						<div class="mb-4">
+							<label class="form-label">Links</label>
+							<div id="links-container">
+								<div class="row g-3 mb-2">
+									<div class="col-md-5">
+										<label for="platform" class="form-label text-muted small">Platform</label>
+										<select id="platform" name="platform" class="form-select">
+											<option value="" disabled selected>Select a platform</option>
+											<option value="Website">Website</option>
+											<option value="LinkedIn">LinkedIn</option>
+											<option value="Twitter">Twitter</option>
+											<option value="Facebook">Facebook</option>
+											<option value="Instagram">Instagram</option>
+											<option value="GitHub">GitHub</option>
+											<option value="YouTube">YouTube</option>
+											<option value="Other">Other</option>
+										</select>
+									</div>
+									<div class="col-md-7">
+										<label for="linkUrl" class="form-label text-muted small">URL</label>
+										<input type="url" id="linkUrl" name="linkUrl" class="form-control" placeholder="https://..."/>
+									</div>
+								</div>
+							</div>
+							<button type="button" class="btn btn-sm btn-outline-secondary mt-2" hx-get="/ui/link-row" hx-target="#links-container" hx-swap="beforeend">
+								+ Add Another Link
+							</button>
+						</div>
+						<div class="row g-3 mb-4">
+							<div class="col-md-6">
+								<label for="logo" class="form-label">Company Logo</label>
+								<input type="file" id="logo" name="logo" class="form-control" accept="image/*"/>
+								<div class="form-text">Square logo recommended (e.g., 400x400px).</div>
+							</div>
+						</div>
+						<div class="mb-4">
+							<label for="description" class="form-label">Description</label>
+							<textarea id="description" name="description" class="form-control" rows="4"></textarea>
+						</div>
+						<div class="mb-4">
+							<label class="form-label d-block">Tags</label>
+							<div class="row g-2">
+								for _, tag := range models.TagsList {
+									<div class="col-sm-6 col-md-4 col-lg-3">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" name="tags" value={ tag } id={ "tag-" + tag }/>
+											<label class="form-check-label" for={ "tag-" + tag }>
+												{ tag }
+											</label>
+										</div>
+									</div>
+								}
+							</div>
+						</div>
+						<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+							<button type="submit" class="btn btn-primary px-4 py-2">Submit Company</button>
+						</div>
+						<div id="form-result" class="mt-3"></div>
+					</form>
+				</div>
+			</div>
+		</div>
+	}
 }
 
 templ PostAddCompany() {
-    <div class="alert alert-success" role="alert">
-        Company submitted successfully! We will review it shortly.
-    </div>
+	<div class="alert alert-success" role="alert">
+		Company submitted successfully! We will review it shortly.
+	</div>
 }

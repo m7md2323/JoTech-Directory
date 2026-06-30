@@ -3,44 +3,44 @@ package partials
 import "github.com/m7md2323/JoTech-Directory/internal/models"
 
 templ BranchRow() {
-    <div class="row g-3 mb-2 branch-row mt-1">
-        <div class="col-md-5">
-            <select name="other_cities" class="form-select" required>
-                <option value="" disabled selected>Select a city</option>
-                for _, city := range models.CitiesList {
-                    <option value={ city }>{ city }</option>
-                }
-            </select>
-        </div>
-        <div class="col-md-6">
-            <input type="url" name="other_locationUrls" class="form-control" placeholder="https://maps.app.goo.gl/..." />
-        </div>
-        <div class="col-md-1">
-            <button type="button" class="btn btn-outline-danger w-100" onclick="this.closest('.branch-row').remove()"><i class="fas fa-trash"></i></button>
-        </div>
-    </div>
+	<div class="row g-3 mb-2 branch-row mt-1">
+		<div class="col-md-5">
+			<select name="other_cities" class="form-select" required>
+				<option value="" disabled selected>Select a city</option>
+				for _, city := range models.CitiesList {
+					<option value={ city }>{ city }</option>
+				}
+			</select>
+		</div>
+		<div class="col-md-6">
+			<input type="url" name="other_locationUrls" class="form-control" placeholder="https://maps.app.goo.gl/..."/>
+		</div>
+		<div class="col-md-1">
+			<button type="button" class="btn btn-outline-danger w-100" onclick="this.closest('.branch-row').remove()"><i class="fas fa-trash"></i></button>
+		</div>
+	</div>
 }
 
 templ LinkRow() {
-    <div class="row g-3 mb-2 link-row mt-1">
-        <div class="col-md-5">
-            <select name="other_platforms" class="form-select">
-                <option value="" disabled selected>Select a platform</option>
-                <option value="Website">Website</option>
-                <option value="LinkedIn">LinkedIn</option>
-                <option value="Twitter">Twitter</option>
-                <option value="Facebook">Facebook</option>
-                <option value="Instagram">Instagram</option>
-                <option value="GitHub">GitHub</option>
-                <option value="YouTube">YouTube</option>
-                <option value="Other">Other</option>
-            </select>
-        </div>
-        <div class="col-md-6">
-            <input type="url" name="other_linkUrls" class="form-control" placeholder="https://..." />
-        </div>
-        <div class="col-md-1">
-            <button type="button" class="btn btn-outline-danger w-100" onclick="this.closest('.link-row').remove()"><i class="fas fa-trash"></i></button>
-        </div>
-    </div>
+	<div class="row g-3 mb-2 link-row mt-1">
+		<div class="col-md-5">
+			<select name="other_platforms" class="form-select">
+				<option value="" disabled selected>Select a platform</option>
+				<option value="Website">Website</option>
+				<option value="LinkedIn">LinkedIn</option>
+				<option value="Twitter">Twitter</option>
+				<option value="Facebook">Facebook</option>
+				<option value="Instagram">Instagram</option>
+				<option value="GitHub">GitHub</option>
+				<option value="YouTube">YouTube</option>
+				<option value="Other">Other</option>
+			</select>
+		</div>
+		<div class="col-md-6">
+			<input type="url" name="other_linkUrls" class="form-control" placeholder="https://..."/>
+		</div>
+		<div class="col-md-1">
+			<button type="button" class="btn btn-outline-danger w-100" onclick="this.closest('.link-row').remove()"><i class="fas fa-trash"></i></button>
+		</div>
+	</div>
 }

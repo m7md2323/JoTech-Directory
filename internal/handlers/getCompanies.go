@@ -23,11 +23,19 @@ func Companies(w http.ResponseWriter, r *http.Request) {
 	})
 
 	page := pages.Companies(companies)
-	page.Render(r.Context(), w)
+	renderErr:=page.Render(r.Context(), w)
+	if renderErr != nil {
+		log.Println("Something went wrong rendering ",renderErr)
+	}
+
 }
 
 func SearchAndFilterCompanies(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
+	parseErr:=r.ParseForm()
+	
+	if parseErr !=nil {
+		log.Println("Something went wrong while parsing in SearchAndFilter ",parseErr)
+	}
 
 	Paramas := models.FilterParams{
 		SearchTerm: r.FormValue("search"),
@@ -50,6 +58,9 @@ func SearchAndFilterCompanies(w http.ResponseWriter, r *http.Request) {
 		return companiesRes[i].Name < companiesRes[j].Name
 	})
 	partial := partials.CompaniesList(companiesRes)
-	partial.Render(r.Context(), w)
+	renderErr:=partial.Render(r.Context(), w)
+	if renderErr != nil {
+		log.Println("Something went wrong rendering ",renderErr)
+	}
 
 }

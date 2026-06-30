@@ -125,5 +125,8 @@ func PostAddEvent(w http.ResponseWriter, r *http.Request) {
 	database.DB.Create(&newCompany)
 
 	page := pages.MessageAddEvent()
-	page.Render(r.Context(), w)
+	renderErr := page.Render(r.Context(), w)
+	if renderErr != nil {
+		log.Println("Something went wrong rendering ", renderErr)
+	}
 }

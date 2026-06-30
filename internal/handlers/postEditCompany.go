@@ -4,11 +4,8 @@ import (
 	"github.com/m7md2323/JoTech-Directory/internal/database"
 	"github.com/m7md2323/JoTech-Directory/internal/models"
 	"github.com/m7md2323/JoTech-Directory/web/templates/pages"
-	"io"
 	"log"
-	"mime/multipart"
 	"net/http"
-	"os"
 	"path/filepath"
 
 	//"gorm.io/gorm"
@@ -208,23 +205,8 @@ func PostEditCompany(w http.ResponseWriter, r *http.Request) {
 	}
 
 	page := pages.PostEditCompany()
-	page.Render(r.Context(), w)
-}
-
-func saveFilee(file multipart.File, path string) {
-	uploadsPath := os.Getenv("UPLOADS_FOLDER_PATH")
-
-	newFile, err := os.OpenFile(uploadsPath+"/"+path,
-		os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0777)
-	if err != nil {
-		log.Println("os Something went wrong", err)
-		return
-	}
-	defer newFile.Close()
-
-	_, err = io.Copy(newFile, file)
-	if err != nil {
-		log.Println("io Something went wrong", err)
-		return
+	renderErr := page.Render(r.Context(), w)
+	if renderErr != nil {
+		log.Println("Something went wrong rendering ", renderErr)
 	}
 }

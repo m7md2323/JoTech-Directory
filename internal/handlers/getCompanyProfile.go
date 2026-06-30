@@ -16,5 +16,8 @@ func GetCompanyProfile(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	page := pages.CompanyProfile(company)
-	page.Render(r.Context(), w)
+	renderErr := page.Render(r.Context(), w)
+	if renderErr != nil {
+		log.Println("Something went wrong rendering ", renderErr)
+	}
 }
