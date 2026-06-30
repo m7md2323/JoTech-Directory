@@ -4,7 +4,6 @@ import (
 	"Jordan-Tech-Companies/internal/database"
 	"Jordan-Tech-Companies/internal/models"
 	"Jordan-Tech-Companies/web/templates/pages"
-	"fmt"
 	"io"
 	"log"
 	"mime/multipart"
@@ -26,7 +25,8 @@ func PostEditCompany(w http.ResponseWriter, r *http.Request) {
 	company, err := database.ReturnCompanyByName(companyName)
 
 	if err != nil {
-		log.Fatal("Error retrieving company by name: ", err)
+		log.Println("Error retrieving company by name: ", err)
+		http.Error(w, "Company not found", http.StatusNotFound)
 		return
 	}
 
@@ -201,39 +201,30 @@ func PostEditCompany(w http.ResponseWriter, r *http.Request) {
 	})*/
 	
 
-	dir, _ := os.Getwd()
-	log.Printf("DEBUG: Web server is executing from: %s", dir)
-
-	var count int64
-	database.DB.Table("companies").Count(&count)
-	log.Printf("DEBUG: Web server sees exactly %d companies in the file it opened", count)
 	if updateErr != nil {
-		log.Printf("CRITICAL: Failed to fully update company %s: %v", companyName, updateErr)
+		log.Printf("Failed to fully update company %s: %v", companyName, updateErr)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
-	} else {
-		log.Printf("Successfully updated company %s and explicitly rewrote associations.", companyName)
 	}
 
 	page := pages.PostEditCompany()
 	page.Render(r.Context(), w)
-	w.WriteHeader(http.StatusOK)
 }
 
 func saveFilee(file multipart.File, path string) {
-
 	uploadsPath := os.Getenv("UPLOADS_FOLDER_PATH")
 
 	newFile, err := os.OpenFile(uploadsPath+"/"+path,
 		os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0777)
 	if err != nil {
-		fmt.Println("os Something went wrong", err)
+		log.Println("os Something went wrong", err)
 		return
 	}
 	defer newFile.Close()
 
 	_, err = io.Copy(newFile, file)
 	if err != nil {
-		fmt.Println("io Something went wrong", err)
+		log.Println("io Something went wrong", err)
 		return
 	}
 }

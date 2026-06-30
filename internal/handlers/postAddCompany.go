@@ -4,7 +4,6 @@ import (
 	"Jordan-Tech-Companies/internal/database"
 	"Jordan-Tech-Companies/internal/models"
 	"Jordan-Tech-Companies/web/templates/pages"
-	"fmt"
 	"io"
 	"log"
 	"mime/multipart"
@@ -106,8 +105,6 @@ func PostAddCompany(w http.ResponseWriter, r *http.Request) {
 	newLogoFileName :=  r.FormValue("name") + "Logo" + filepath.Ext(logoHeader.Filename)
 	newProfileImageFileName := r.FormValue("name") + "ProfileImage" + filepath.Ext(ProfileHeader.Filename)
 
-	fmt.Println(newLogoFileName)
-
 	saveFile(logo, newLogoFileName)
 	saveFile(profileImage, newProfileImageFileName)
 
@@ -128,7 +125,6 @@ func PostAddCompany(w http.ResponseWriter, r *http.Request) {
 
 	page := pages.PostAddCompany()
 	page.Render(r.Context(), w)
-	w.WriteHeader(http.StatusOK)
 }
 
 func saveFile(file multipart.File, path string) {
@@ -139,14 +135,14 @@ func saveFile(file multipart.File, path string) {
 	newFile, err := os.OpenFile(uploadsPath+"/"+path,
 		os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0777)
 	if err != nil {
-		fmt.Println("os Something went wrong", err)
+		log.Println("os Something went wrong", err)
 		return
 	}
 	defer newFile.Close()
 
 	_, err = io.Copy(newFile, file)
 	if err != nil {
-		fmt.Println("io Something went wrong", err)
+		log.Println("io Something went wrong", err)
 		return
 	}
 }

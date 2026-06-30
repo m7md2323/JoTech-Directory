@@ -3,7 +3,6 @@ package handlers
 import (
 	"Jordan-Tech-Companies/internal/database"
 	"Jordan-Tech-Companies/web/templates/pages"
-	_"fmt"
 	"log"
 	"net/http"
 )

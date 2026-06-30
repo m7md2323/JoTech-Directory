@@ -4,25 +4,17 @@ import (
 	"net/http"
 	"Jordan-Tech-Companies/web/templates/pages"
 	"Jordan-Tech-Companies/internal/database"
-	"fmt"
+	"log"
 )
 
 func GetEditCompany(w http.ResponseWriter, r *http.Request) {
-
-
 	name := r.PathValue("name")
 	company, err := database.ReturnCompanyByName(name)
 	if err != nil {
-		fmt.Println("Something went wrong inside GetEditCompany handler", err)
+		log.Println("Something went wrong inside GetEditCompany handler", err)
+		http.Error(w, "Company not found", http.StatusNotFound)
+		return
 	}
-
-	fmt.Println("DEBUG company.ID:", company.ID)
-	fmt.Println("DEBUG company.Name:", company.Name)
-	fmt.Println("DEBUG company.Locations count:", len(company.Locations))
-	fmt.Println("DEBUG company.Locations:", company.Locations)
-
-	w.WriteHeader(http.StatusOK)
 	page := pages.GetEditCompany(company)
 	page.Render(r.Context(), w)
-
 }

@@ -4,7 +4,6 @@ import (
 	"Jordan-Tech-Companies/internal/database"
 	"Jordan-Tech-Companies/internal/models"
 	"Jordan-Tech-Companies/web/templates/pages"
-	"fmt"
 	"log"
 	"net/http"
 	"path/filepath"
@@ -108,8 +107,6 @@ func PostAddEvent(w http.ResponseWriter, r *http.Request) {
 	newLogoFileName :=  r.FormValue("name") + "Logo" + filepath.Ext(logoHeader.Filename)
 	newProfileImageFileName := r.FormValue("name") + "ProfileImage" + filepath.Ext(ProfileHeader.Filename)
 
-	fmt.Println(newLogoFileName)
-
 	saveFile(logo, newLogoFileName)
 	saveFile(profileImage, newProfileImageFileName)
 
@@ -129,5 +126,4 @@ func PostAddEvent(w http.ResponseWriter, r *http.Request) {
 
 	page := pages.MessageAddEvent()
 	page.Render(r.Context(), w)
-	w.WriteHeader(http.StatusOK)
 }

@@ -2,7 +2,6 @@ package database
 
 import (
 	"Jordan-Tech-Companies/internal/models"
-	"fmt"
 	"log"
 	"os"
 
@@ -20,7 +19,6 @@ func ConnectDatabase() {
 	}
 
 	database_path := os.Getenv("DATABASE_FILE_PATH")
-	fmt.Println(database_path)
 	database, err := gorm.Open(sqlite.Open(database_path), &gorm.Config{})
 	if err != nil {
 		log.Fatal("Failed to connect to database!", err)
@@ -50,10 +48,8 @@ func ReturnCompaniesByQuery(paramas  models.FilterParams) ([]models.Company, err
 
 	var companies []models.Company
 	query := DB.Model(&models.Company{}).Preload("Locations").Preload("Tags")
-	fmt.Println("Hello1 ",paramas)
 	if paramas.SearchTerm != "" {
 		query = query.Where("name LIKE ?","%" + paramas.SearchTerm + "%")		
-		fmt.Println(query.RowsAffected)
 	}
 
 	if len(paramas.Sizes) >0 && paramas.Sizes[0] != "" {
@@ -80,7 +76,6 @@ func ReturnCompaniesByQuery(paramas  models.FilterParams) ([]models.Company, err
 
 	
 	err := query.Debug().Find(&companies).Error
-	fmt.Println(companies)	
 	return companies,err
 }
 
