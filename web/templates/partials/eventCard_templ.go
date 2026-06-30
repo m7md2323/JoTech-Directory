@@ -9,7 +9,7 @@ import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
 import (
-	"github.com/m7md2323/Jordan-Tech-Companies/internal/models"
+	"github.com/m7md2323/JoTech-Directory/internal/models"
 	"fmt"
 )
 

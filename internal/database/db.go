@@ -1,7 +1,7 @@
 package database
 
 import (
-	"github.com/m7md2323/Jordan-Tech-Companies/internal/models"
+	"github.com/m7md2323/JoTech-Directory/internal/models"
 	"log"
 	"os"
 

@@ -1,9 +1,9 @@
 package handlers
 
 import (
-	"github.com/m7md2323/Jordan-Tech-Companies/internal/database"
-	"github.com/m7md2323/Jordan-Tech-Companies/web/templates/pages"
-	//"github.com/m7md2323/Jordan-Tech-Companies/web/templates/partials"
+	"github.com/m7md2323/JoTech-Directory/internal/database"
+	"github.com/m7md2323/JoTech-Directory/web/templates/pages"
+	//"github.com/m7md2323/JoTech-Directory/web/templates/partials"
 	"log"
 	"net/http"
 )

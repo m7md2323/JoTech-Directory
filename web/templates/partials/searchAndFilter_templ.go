@@ -8,7 +8,7 @@ package partials
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-import "github.com/m7md2323/Jordan-Tech-Companies/internal/models"
+import "github.com/m7md2323/JoTech-Directory/internal/models"
 
 func SearchAndFilter() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
