@@ -2,8 +2,8 @@ package handlers
 
 import (
 	"net/http"
-	"Jordan-Tech-Companies/web/templates/pages"
-	"Jordan-Tech-Companies/internal/database"
+	"github.com/m7md2323/Jordan-Tech-Companies/web/templates/pages"
+	"github.com/m7md2323/Jordan-Tech-Companies/internal/database"
 	"log"
 )
 

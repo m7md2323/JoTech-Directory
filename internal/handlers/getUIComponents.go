@@ -2,7 +2,7 @@ package handlers
 
 import (
 	"net/http"
-	"Jordan-Tech-Companies/web/templates/partials"
+	"github.com/m7md2323/Jordan-Tech-Companies/web/templates/partials"
 )
 
 func GetBranchRow(w http.ResponseWriter, r *http.Request) {

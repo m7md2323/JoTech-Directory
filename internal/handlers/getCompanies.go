@@ -1,10 +1,10 @@
 package handlers
 
 import (
-	"Jordan-Tech-Companies/internal/database"
-	"Jordan-Tech-Companies/internal/models"
-	"Jordan-Tech-Companies/web/templates/pages"
-	"Jordan-Tech-Companies/web/templates/partials"
+	"github.com/m7md2323/Jordan-Tech-Companies/internal/database"
+	"github.com/m7md2323/Jordan-Tech-Companies/internal/models"
+	"github.com/m7md2323/Jordan-Tech-Companies/web/templates/pages"
+	"github.com/m7md2323/Jordan-Tech-Companies/web/templates/partials"
 	"log"
 	"net/http"
 	"sort"

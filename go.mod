@@ -1,6 +1,6 @@
 //module github.com/m7md2323/Jordan-Tech-Companies
 
-module Jordan-Tech-Companies
+module github.com/m7md2323/Jordan-Tech-Companies
 
 go 1.25.0
 

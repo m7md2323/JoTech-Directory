@@ -2,7 +2,7 @@ package handlers
 
 import (
 	"net/http"
-	"Jordan-Tech-Companies/web/templates/pages"
+	"github.com/m7md2323/Jordan-Tech-Companies/web/templates/pages"
 )
 
 func Home(w http.ResponseWriter, r *http.Request) {

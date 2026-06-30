@@ -1,14 +1,14 @@
 package main
 
 import (
-	"Jordan-Tech-Companies/internal/database"
-	"Jordan-Tech-Companies/internal/handlers"
+	"github.com/m7md2323/Jordan-Tech-Companies/internal/database"
+	"github.com/m7md2323/Jordan-Tech-Companies/internal/handlers"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
 
-	//"Jordan-Tech-Companies/internal/services"
+	//"github.com/m7md2323/Jordan-Tech-Companies/internal/services"
 	"github.com/joho/godotenv"
 )
 

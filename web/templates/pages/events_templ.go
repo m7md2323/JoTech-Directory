@@ -9,9 +9,9 @@ import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
 import (
-	"Jordan-Tech-Companies/internal/models"
-	"Jordan-Tech-Companies/web/templates/layouts"
-	"Jordan-Tech-Companies/web/templates/partials"
+	"github.com/m7md2323/Jordan-Tech-Companies/internal/models"
+	"github.com/m7md2323/Jordan-Tech-Companies/web/templates/layouts"
+	"github.com/m7md2323/Jordan-Tech-Companies/web/templates/partials"
 	"fmt"
 )
 

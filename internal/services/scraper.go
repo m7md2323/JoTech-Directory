@@ -1,8 +1,8 @@
 package services
 
 import (
-	"Jordan-Tech-Companies/internal/database"
-	"Jordan-Tech-Companies/internal/models"
+	"github.com/m7md2323/Jordan-Tech-Companies/internal/database"
+	"github.com/m7md2323/Jordan-Tech-Companies/internal/models"
 	"bufio"
 	"context"
 	"encoding/json"
