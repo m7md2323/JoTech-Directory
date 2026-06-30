@@ -7,6 +7,7 @@ import (
 	"Jordan-Tech-Companies/web/templates/partials"
 	"fmt"
 	"net/http"
+	"sort"
 )
 
 func Companies(w http.ResponseWriter, r *http.Request) {
@@ -16,9 +17,13 @@ func Companies(w http.ResponseWriter, r *http.Request) {
 	if err !=nil {
 		fmt.Println("Something went wrong in Companies handler",err)
 	}
+
+	sort.Slice(companies, func(i, j int) bool {
+		return companies[i].Name < companies[j].Name
+	})
+
 	page := pages.Companies(companies)
 	page.Render(r.Context(), w)
-
 }
 
 func SearchAndFilterCompanies(w http.ResponseWriter, r *http.Request) {
@@ -40,6 +45,9 @@ func SearchAndFilterCompanies(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	sort.Slice(companiesRes, func(i, j int) bool {
+		return companiesRes[i].Name < companiesRes[j].Name
+	})
 	w.WriteHeader(http.StatusOK)
 	partial := partials.CompaniesList(companiesRes)
 	partial.Render(r.Context(), w)
