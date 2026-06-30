@@ -78,6 +78,20 @@ go run ./cmd/server/main.go
 
 The application will be accessible at `http://localhost:8080`.
 
+### 6. Run with Docker
+
+Alternatively, you can run the application fully containerized using Docker without needing Go installed locally. This ensures a consistent environment and prevents version mismatches.
+
+```bash
+# Build the Docker image
+docker build -t jordan-tech-companies .
+
+# Run the container
+docker run -p 8080:8080 jordan-tech-companies
+```
+
+The application will be accessible at `http://localhost:8080`.
+
 ## 📂 Project Structure
 
 - `cmd/server/main.go`: The main entry point for the application. It initializes the database, configures routes, and starts the server.

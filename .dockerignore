@@ -1,0 +1,12 @@
+.git
+.gitignore
+.env.example
+README.md
+CONTRIBUTING.md
+RawListOfURLs.txt
+TestURLs.txt
+server
+server.exe
+*.db-journal
+*.db-shm
+*.db-wal
