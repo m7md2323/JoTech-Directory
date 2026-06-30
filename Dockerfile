@@ -35,7 +35,7 @@ COPY --from=builder /app/internal/database ./internal/database
 
 # Copy the .env file to ensure default variables (like PORT and DATABASE_FILE_PATH) are set.
 # Note: In production, consider passing environment variables securely via docker run --env-file or secrets.
-COPY --from=builder /app/.env .
+COPY --from=builder /app/.env.example .env
 
 # Expose the application port
 EXPOSE 8080
