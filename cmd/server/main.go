@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
+
 	//"Jordan-Tech-Companies/internal/services"
 	"github.com/joho/godotenv"
 )
@@ -53,7 +55,7 @@ func main() {
 	mux.HandleFunc("GET /add_event", handlers.GetAddEvent)
 	mux.HandleFunc("POST /add_event", handlers.PostAddEvent)
 
-	fmt.Println("Listening to port 8080")
-	log.Fatal(http.ListenAndServe(":8080", mux))
+	fmt.Println("Listening to port", os.Getenv("PORT"))
+	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), mux))
 
 }

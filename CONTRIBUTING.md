@@ -84,7 +84,7 @@ templ generate
 go run ./cmd/server/main.go
 ```
 
-The app will be available at **http://localhost:8080**.
+The app will be available at the PORT you chose in the .env file.
 
 > [!NOTE]
 > The SQLite database (`internal/database/jordanTechCompanies.db`) is included in the repo and comes pre-populated with company data. No migrations or seed scripts needed.
